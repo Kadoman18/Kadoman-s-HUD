@@ -2,7 +2,6 @@
 	"namespace": "hud_layout_kpadv",
 
 	"hotbar_slot@hud_kpadv.item_renderer_panel": {
-		"type": "image",
 		"size": [20, 22]
 	},
 
@@ -65,8 +64,6 @@
 	"offhand_slot@hud_kpadv.item_renderer_panel": {
 		"$renderer_data": "#offhand_item",
 		"$durability_data": "#offhand_durability",
-		"type": "image",
-		"texture": "textures/ui/armor_durability_viewer/offhand_slot",
 		"size": [22, 22],
 		"controls": [
 			{ "offhand_item_renderer@hud_kpadv.item_renderer": {} },

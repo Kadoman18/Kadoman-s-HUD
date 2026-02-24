@@ -244,51 +244,51 @@
 
 			{
 				"binding_type": "view",
-				"source_property_name": "('%.12s' * #subtitle_text - '%.8s' * #subtitle_text)",
+				"source_property_name": "('%.16s' * #subtitle_text - '%.12s' * #subtitle_text)",
 				"target_property_name": "#chest_item"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "('%.16s' * #subtitle_text - '%.12s' * #subtitle_text)",
+				"source_property_name": "('%.20s' * #subtitle_text - '%.16s' * #subtitle_text)",
 				"target_property_name": "#chest_durability"
 			},
 
 			{
 				"binding_type": "view",
-				"source_property_name": "('%.20s' * #subtitle_text - '%.16s' * #subtitle_text)",
+				"source_property_name": "('%.28s' * #subtitle_text - '%.24s' * #subtitle_text)",
 				"target_property_name": "#legs_item"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "('%.24s' * #subtitle_text - '%.20s' * #subtitle_text)",
+				"source_property_name": "('%.32s' * #subtitle_text - '%.28s' * #subtitle_text)",
 				"target_property_name": "#legs_durability"
 			},
 
 			{
 				"binding_type": "view",
-				"source_property_name": "('%.28s' * #subtitle_text - '%.24s' * #subtitle_text)",
+				"source_property_name": "('%.40s' * #subtitle_text - '%.36s' * #subtitle_text)",
 				"target_property_name": "#feet_item"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "('%.32s' * #subtitle_text - '%.28s' * #subtitle_text)",
+				"source_property_name": "('%.44s' * #subtitle_text - '%.40s' * #subtitle_text)",
 				"target_property_name": "#feet_durability"
 			},
 
 			{
 				"binding_type": "view",
-				"source_property_name": "('%.36s' * #subtitle_text - '%.32s' * #subtitle_text)",
+				"source_property_name": "('%.52s' * #subtitle_text - '%.48s' * #subtitle_text)",
 				"target_property_name": "#offhand_item"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "('%.40s' * #subtitle_text - '%.36s' * #subtitle_text)",
+				"source_property_name": "('%.56s' * #subtitle_text - '%.52s' * #subtitle_text)",
 				"target_property_name": "#offhand_durability"
 			},
 
 			{
 				"binding_type": "view",
-				"source_property_name": "('%.44s' * #subtitle_text - '%.40s' * #subtitle_text)",
+				"source_property_name": "('%.60s' * #subtitle_text - '%.56s' * #subtitle_text)",
 				"target_property_name": "#offhand_stack_count"
 			}
 		]
