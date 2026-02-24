@@ -1,0 +1,344 @@
+{
+	"namespace": "hud_kpadv",
+
+	"offhand_stack_count_label": {
+		"type": "label",
+		"text": "#text",
+		"anchor_to": "bottom_right",
+		"anchor_from": "bottom_right",
+		"offset": [0, 1],
+		"layer": 10,
+		"shadow": true,
+		"bindings": [
+			{ "binding_name": "#show_survival_ui" },
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_property_name": "('0' + #offhand_stack_count)",
+				"target_property_name": "#stack_count_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "((#stack_count_text - '0') * 1)",
+				"target_property_name": "#stack_count_number"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('§z' + #stack_count_text - '0')",
+				"target_property_name": "#text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(((#stack_count_text - '9404') = #stack_count_text) and (#stack_count_number > 1) and #show_survival_ui)",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"offhand_stack_count_panel": {
+		"type": "panel",
+		"size": [18, 18],
+		"controls": [{ "stack_count@hud_kpadv.offhand_stack_count_label": {} }]
+	},
+
+	"durability_bar": {
+		"type": "custom",
+		"renderer": "progress_bar_renderer",
+		"size": [12, 1],
+		"offset": [0, 5],
+		"layer": 10,
+		"property_bag": {
+			"drop_shadow": true,
+			"is_durability": true,
+			"round_value": true,
+			"#default_progress_bar_total_amount": 1000
+		},
+		"bindings": [
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_property_name": "('§z' + $durability_data)",
+				"target_property_name": "#item_renderer_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "#default_progress_bar_total_amount",
+				"target_property_name": "#progress_bar_total_amount"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "((#item_renderer_text - '§z') * 1)",
+				"target_property_name": "#progress_bar_current_amount"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "((#item_renderer_text - '9404' - '1000') = #item_renderer_text)",
+				"target_property_name": "#touch_progress_bar_visible"
+			},
+			{ "binding_name": "#show_survival_ui", "binding_name_override": "#visible" }
+		]
+	},
+
+	"durability_bar_panel": {
+		"type": "panel",
+		"controls": [{ "durability_bar@hud_kpadv.durability_bar": {} }]
+	},
+
+	"durability_text": {
+		"type": "label",
+		"text": "#text",
+		"size": ["default", "default"],
+		"layer": 10,
+		"color": "green",
+		"shadow": true,
+		"localize": false,
+		"bindings": [
+			{ "binding_name": "#show_survival_ui" },
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_property_name": "('0' + $durability_data)",
+				"target_property_name": "#item_renderer_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(#item_renderer_text - ('%.4s' * #item_renderer_text))",
+				"target_property_name": "#raw_decimal_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(('%.' + ((#raw_decimal_text > 0) * 3) + 's') * ('0.' + #raw_decimal_text))",
+				"target_property_name": "#decimal_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('§z' + ('%.4s' * #item_renderer_text) + #decimal_text - '0' + '%')",
+				"target_property_name": "#text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(((#item_renderer_text - '9404') = #item_renderer_text) and #show_survival_ui)",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"durability_text_panel": {
+		"type": "panel",
+		"controls": [
+			{
+				"durability_text@hud_kpadv.durability_text": {
+					"anchor_from": "center",
+					"anchor_to": "center",
+					"offset": [0, 0]
+				}
+			}
+		]
+	},
+
+	"empty_slot_icon": {
+		"type": "image",
+		"texture": "$empty_slot_icon_texture",
+		"size": [16, 16],
+		"layer": 1,
+		"bindings": [
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_property_name": "('§z' + $renderer_data)",
+				"target_property_name": "#item_renderer_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(not ((#item_renderer_text - '9404') = #item_renderer_text))",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"item_renderer@item_id_kpadv.item_id": {
+		"type": "image",
+		"texture": "#texture",
+		"size": [16, 16],
+		"layer": 2,
+		"bindings": [
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_property_name": "('§z' + $renderer_data)",
+				"target_property_name": "#item_renderer_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('#' + (#item_renderer_text - '§z'))",
+				"target_property_name": "#texture"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "((#item_renderer_text - '9404') = #item_renderer_text)",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"item_renderer_panel": {
+		"type": "panel",
+		"size": ["100%cm", "100%cm"],
+
+		"$renderer_data|default": "#none",
+		"$durability_data|default": "#none",
+		"$additional_content|default": "hud_kpadv.durability_bar_panel",
+
+		"controls": [
+			{
+				"item_renderer@hud_kpadv.item_renderer": {
+					"$renderer_data": "$renderer_data"
+				}
+			},
+			{
+				"empty_slot_icon@hud_kpadv.empty_slot_icon": {
+					"$renderer_data": "$renderer_data"
+				}
+			},
+			{
+				"additional_content@$additional_content": {
+					"$renderer_data": "$renderer_data",
+					"$durability_data": "$durability_data",
+					"size": ["100%sm", "100%sm"]
+				}
+			}
+		]
+	},
+
+	"subtitle_text_data": {
+		"type": "panel",
+		"size": [0, 0],
+		"bindings": [
+			{ "binding_name": "#hud_subtitle_text_string" },
+			{
+				"binding_name": "#hud_subtitle_text_string",
+				"binding_name_override": "#preserved_text",
+				"binding_condition": "visibility_changed"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(not (#hud_subtitle_text_string = #preserved_text) and not ((#hud_subtitle_text_string - 'kado:') = #hud_subtitle_text_string))",
+				"target_property_name": "#visible"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(#preserved_text - 'kado:')",
+				"target_property_name": "#subtitle_text"
+			},
+
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.4s' * #subtitle_text)",
+				"target_property_name": "#head_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.8s' * #subtitle_text - '%.4s' * #subtitle_text)",
+				"target_property_name": "#head_durability"
+			},
+
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.12s' * #subtitle_text - '%.8s' * #subtitle_text)",
+				"target_property_name": "#chest_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.16s' * #subtitle_text - '%.12s' * #subtitle_text)",
+				"target_property_name": "#chest_durability"
+			},
+
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.20s' * #subtitle_text - '%.16s' * #subtitle_text)",
+				"target_property_name": "#legs_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.24s' * #subtitle_text - '%.20s' * #subtitle_text)",
+				"target_property_name": "#legs_durability"
+			},
+
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.28s' * #subtitle_text - '%.24s' * #subtitle_text)",
+				"target_property_name": "#feet_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.32s' * #subtitle_text - '%.28s' * #subtitle_text)",
+				"target_property_name": "#feet_durability"
+			},
+
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.36s' * #subtitle_text - '%.32s' * #subtitle_text)",
+				"target_property_name": "#offhand_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.40s' * #subtitle_text - '%.36s' * #subtitle_text)",
+				"target_property_name": "#offhand_durability"
+			},
+
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.44s' * #subtitle_text - '%.40s' * #subtitle_text)",
+				"target_property_name": "#offhand_stack_count"
+			}
+		]
+	},
+
+	"title_text_data": {
+		"type": "panel",
+		"size": [0, 0],
+		"bindings": [
+			{ "binding_name": "#hud_title_text_string" },
+			{
+				"binding_name": "#hud_title_text_string",
+				"binding_name_override": "#preserved_text",
+				"binding_condition": "visibility_changed"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(not (#hud_title_text_string = #preserved_text) and not ((#hud_title_text_string - 'kado:') = #hud_title_text_string))",
+				"target_property_name": "#visible"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(#preserved_text - 'kado:')",
+				"target_property_name": "#biome_code"
+			}
+		]
+	},
+
+	"biome_label@biome_id_kpadv.biome_id": {
+		"type": "label",
+		"text": "#text",
+		"anchor_from": "top_middle",
+		"anchor_to": "top_middle",
+		"offset": [0, 8],
+		"layer": 15,
+		"shadow": true,
+		"localize": false,
+		"bindings": [
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_title_data_binding",
+				"source_property_name": "('§z' + #biome_code)",
+				"target_property_name": "#biome_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('#' + (#biome_text - '§z'))",
+				"target_property_name": "#text"
+			},
+			{ "binding_name": "#show_survival_ui", "binding_name_override": "#visible" }
+		]
+	}
+}
