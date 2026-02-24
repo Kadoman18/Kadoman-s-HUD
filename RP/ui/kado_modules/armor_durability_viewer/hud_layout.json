@@ -6,14 +6,20 @@
 
 		"$slot_texture|default": "textures/ui/hotbar_0",
 
-		"controls": [
+		"modifications": [
 			{
-				"slot_background": {
-					"type": "image",
-					"texture": "$slot_texture",
-					"size": [20, 22],
-					"layer": 0
-				}
+				"array_name": "controls",
+				"operation": "insert_front",
+				"value": [
+					{
+						"slot_background": {
+							"type": "image",
+							"texture": "$slot_texture",
+							"size": [20, 22],
+							"layer": 0
+						}
+					}
+				]
 			}
 		]
 	},
@@ -79,18 +85,21 @@
 		"$durability_data": "#offhand_durability",
 		"size": [22, 22],
 
-		"controls": [
+		"modifications": [
 			{
-				"slot_background": {
-					"type": "image",
-					"texture": "textures/ui/armor_durability_viewer/offhand_slot",
-					"size": [22, 22],
-					"layer": 0
-				}
-			},
-			{ "offhand_item_renderer@hud_kpadv.item_renderer": {} },
-			{ "durability_bar@hud_kpadv.durability_bar": {} },
-			{ "stack_count@hud_kpadv.offhand_stack_count_panel": {} }
+				"array_name": "controls",
+				"operation": "insert_front",
+				"value": [
+					{
+						"slot_background": {
+							"type": "image",
+							"texture": "textures/ui/armor_durability_viewer/offhand_slot",
+							"size": [22, 22],
+							"layer": 0
+						}
+					}
+				]
+			}
 		],
 
 		"bindings": [
@@ -129,7 +138,7 @@
 				"armor_durability_viewer@hud_layout_kpadv.armor_durability_viewer_panel": {
 					"anchor_from": "bottom_middle",
 					"anchor_to": "bottom_middle",
-					"offset": [110, 0]
+					"offset": [140, 0]
 				}
 			}
 		],
