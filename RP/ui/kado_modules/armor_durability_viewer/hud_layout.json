@@ -3,7 +3,6 @@
 
 	"equipment_slot": {
 		"type": "panel",
-		"size": [22, 22],
 
 		"$renderer_data|default": "#none",
 		"$durability_data|default": "#none",
@@ -16,7 +15,7 @@
 				"slot_background": {
 					"type": "image",
 					"texture": "$slot_texture",
-					"size": [22, 22],
+					"size": ["100%", 22],
 					"layer": 0
 				}
 			},
@@ -51,38 +50,47 @@
 					"size": [1, 22]
 				}
 			},
+
 			{
 				"head_slot@hud_layout_kpadv.equipment_slot": {
+					"size": [20, 22],
 					"$renderer_data": "#head_item",
 					"$durability_data": "#head_durability",
 					"$slot_texture": "textures/ui/hotbar_0",
 					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_helmet"
 				}
 			},
+
 			{
 				"chest_slot@hud_layout_kpadv.equipment_slot": {
+					"size": [20, 22],
 					"$renderer_data": "#chest_item",
 					"$durability_data": "#chest_durability",
 					"$slot_texture": "textures/ui/hotbar_3",
 					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_chestplate"
 				}
 			},
+
 			{
 				"legs_slot@hud_layout_kpadv.equipment_slot": {
+					"size": [20, 22],
 					"$renderer_data": "#legs_item",
 					"$durability_data": "#legs_durability",
 					"$slot_texture": "textures/ui/hotbar_6",
 					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_leggings"
 				}
 			},
+
 			{
 				"feet_slot@hud_layout_kpadv.equipment_slot": {
+					"size": [20, 22],
 					"$renderer_data": "#feet_item",
 					"$durability_data": "#feet_durability",
 					"$slot_texture": "textures/ui/hotbar_8",
 					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_boots"
 				}
 			},
+
 			{
 				"hotbar_end_cap": {
 					"type": "image",
@@ -97,30 +105,10 @@
 		"type": "panel",
 		"size": [22, 22],
 
-		"bindings": [
-			{
-				"binding_type": "view",
-				"source_control_name": "kpadv_subtitle_data_binding",
-				"source_property_name": "#offhand_item",
-				"target_property_name": "#offhand_item"
-			},
-			{
-				"binding_type": "view",
-				"source_control_name": "kpadv_subtitle_data_binding",
-				"source_property_name": "#offhand_durability",
-				"target_property_name": "#offhand_durability"
-			},
-			{
-				"binding_type": "view",
-				"source_control_name": "kpadv_subtitle_data_binding",
-				"source_property_name": "#offhand_stack_count",
-				"target_property_name": "#offhand_stack_count"
-			}
-		],
-
 		"controls": [
 			{
-				"offhand_slot@hud_layout_kpadv.equipment_slot": {
+				"offhand_equipment@hud_layout_kpadv.equipment_slot": {
+					"size": [22, 22],
 					"$renderer_data": "#offhand_item",
 					"$durability_data": "#offhand_durability",
 					"$slot_texture": "textures/ui/armor_durability_viewer/offhand_slot",
@@ -137,6 +125,7 @@
 		"anchor_from": "bottom_middle",
 		"anchor_to": "bottom_middle",
 		"offset": [0, -1.5],
+
 		"controls": [
 			{
 				"data_carrier@hud_kpadv.parsed_data_carrier": {
@@ -149,12 +138,7 @@
 							}
 						},
 						{
-							"offhand_slot@hud_layout_kpadv.equipment_slot": {
-								"$renderer_data": "#offhand_item",
-								"$durability_data": "#offhand_durability",
-								"$slot_texture": "textures/ui/armor_durability_viewer/offhand_slot",
-								"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_shield",
-								"$show_stack": true,
+							"offhand_instance@hud_layout_kpadv.offhand_slot": {
 								"anchor_from": "bottom_middle",
 								"anchor_to": "bottom_middle",
 								"offset": [-110, 0]
