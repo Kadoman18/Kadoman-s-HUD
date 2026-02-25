@@ -157,51 +157,58 @@ const armorSlots = [
 	EquipmentSlot.Offhand,
 ];
 
-const unknownArmor = {
-	[EquipmentSlot.Head]: 9100,
-	[EquipmentSlot.Chest]: 9101,
-	[EquipmentSlot.Legs]: 9102,
-	[EquipmentSlot.Feet]: 9103,
-	[EquipmentSlot.Offhand]: 9104,
-};
-
 const playerCache = new Map();
 
+/* --------------------------------------------------------- */
+/* STRICT 4-DIGIT PADDER                                     */
+/* --------------------------------------------------------- */
+function pad4(n) {
+	return String(Math.max(0, Math.min(9999, n | 0))).padStart(4, "0");
+}
+
+/* --------------------------------------------------------- */
+/* HUD ENCODER (FIXED WIDTH OUTPUT)                          */
+/* --------------------------------------------------------- */
 function buildPlayerHUDString(player, biomeCode) {
 	const equipment = player.getComponent("equippable");
 
-	const biomeString = ["kado:"];
-	const durabilityString = ["kado:"];
+	const title = "kado:" + pad4(biomeCode);
 
-	biomeString.push(biomeCode.toString().padStart(4, "0"));
+	let subtitle = "kado:";
+	let offhandStack = 0;
 
 	for (const slot of armorSlots) {
 		const item = equipment.getEquipment(slot);
 
-		const itemCode = item ? (itemIdList[item.typeId] ?? unknownArmor[slot]) : unknownArmor[slot];
+		/* ---------- ITEM CODE ---------- */
+		const itemCode = item ? (itemIdList[item.typeId] ?? 0) : 0;
+		subtitle += pad4(itemCode);
 
-		durabilityString.push(itemCode.toString().padStart(4, "0"));
-
+		/* ---------- DURABILITY ---------- */
 		if (item && item.hasComponent("minecraft:durability")) {
-			const durability = item.getComponent("minecraft:durability");
-			const percent = Math.floor(
-				((durability.maxDurability - durability.damage) / durability.maxDurability) * 1000,
-			);
-			durabilityString.push(percent.toString().padStart(4, "0"));
+			const d = item.getComponent("minecraft:durability");
+			const percent = Math.floor(((d.maxDurability - d.damage) / d.maxDurability) * 1000);
+			subtitle += pad4(percent);
 		} else {
-			durabilityString.push("9404");
+			subtitle += "9404";
 		}
 
-		const count = slot === EquipmentSlot.Offhand && item ? item.amount : 0;
-
-		durabilityString.push(count.toString().padStart(4, "0"));
+		/* ---------- OFFHAND STACK (ONLY ONCE) ---------- */
+		if (slot === EquipmentSlot.Offhand) {
+			offhandStack = item ? item.amount : 0;
+		}
 	}
 
+	/* append stack count AFTER loop */
+	subtitle += pad4(offhandStack);
+
 	return {
-		info: biomeString.join(""),
-		durability: durabilityString.join(""),
+		info: title,
+		durability: subtitle,
 	};
 }
+
+/* --------------------------------------------------------- */
 
 function getPlayerBiomeCode(player) {
 	try {

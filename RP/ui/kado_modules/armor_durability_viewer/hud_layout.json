@@ -1,25 +1,37 @@
 {
 	"namespace": "hud_layout_kpadv",
 
-	"hotbar_slot@hud_kpadv.item_renderer_panel": {
-		"size": [20, 22],
+	"equipment_slot": {
+		"type": "panel",
+		"size": [22, 22],
 
+		"$renderer_data|default": "#none",
+		"$durability_data|default": "#none",
 		"$slot_texture|default": "textures/ui/hotbar_0",
+		"$empty_slot_icon_texture|default": "textures/ui/armor_durability_viewer/empty_armor_slot_helmet",
+		"$show_stack|default": false,
 
-		"modifications": [
+		"controls": [
 			{
-				"array_name": "controls",
-				"operation": "insert_front",
-				"value": [
-					{
-						"slot_background": {
-							"type": "image",
-							"texture": "$slot_texture",
-							"size": [20, 22],
-							"layer": 0
-						}
-					}
-				]
+				"slot_background": {
+					"type": "image",
+					"texture": "$slot_texture",
+					"size": [22, 22],
+					"layer": 0
+				}
+			},
+			{
+				"renderer@hud_kpadv.item_renderer_panel": {
+					"$renderer_data": "$renderer_data",
+					"$durability_data": "$durability_data",
+					"$empty_slot_icon_texture": "$empty_slot_icon_texture",
+					"layer": 1
+				}
+			},
+			{
+				"stack_count@hud_kpadv.offhand_stack_count_panel": {
+					"visible": "$show_stack"
+				}
 			}
 		]
 	},
@@ -30,6 +42,7 @@
 		"size": ["100%c", "100%cm"],
 		"anchor_from": "top_left",
 		"anchor_to": "top_left",
+
 		"controls": [
 			{
 				"hotbar_start_cap": {
@@ -39,7 +52,7 @@
 				}
 			},
 			{
-				"head_hotbar@hud_layout_kpadv.hotbar_slot": {
+				"head_slot@hud_layout_kpadv.equipment_slot": {
 					"$renderer_data": "#head_item",
 					"$durability_data": "#head_durability",
 					"$slot_texture": "textures/ui/hotbar_0",
@@ -47,7 +60,7 @@
 				}
 			},
 			{
-				"chest_hotbar@hud_layout_kpadv.hotbar_slot": {
+				"chest_slot@hud_layout_kpadv.equipment_slot": {
 					"$renderer_data": "#chest_item",
 					"$durability_data": "#chest_durability",
 					"$slot_texture": "textures/ui/hotbar_3",
@@ -55,7 +68,7 @@
 				}
 			},
 			{
-				"legs_hotbar@hud_layout_kpadv.hotbar_slot": {
+				"legs_slot@hud_layout_kpadv.equipment_slot": {
 					"$renderer_data": "#legs_item",
 					"$durability_data": "#legs_durability",
 					"$slot_texture": "textures/ui/hotbar_6",
@@ -63,7 +76,7 @@
 				}
 			},
 			{
-				"feet_hotbar@hud_layout_kpadv.hotbar_slot": {
+				"feet_slot@hud_layout_kpadv.equipment_slot": {
 					"$renderer_data": "#feet_item",
 					"$durability_data": "#feet_durability",
 					"$slot_texture": "textures/ui/hotbar_8",
@@ -80,34 +93,40 @@
 		]
 	},
 
-	"offhand_slot@hud_kpadv.item_renderer_panel": {
-		"$renderer_data": "#offhand_item",
-		"$durability_data": "#offhand_durability",
+	"offhand_slot": {
+		"type": "panel",
 		"size": [22, 22],
-
-		"modifications": [
-			{
-				"array_name": "controls",
-				"operation": "insert_front",
-				"value": [
-					{
-						"slot_background": {
-							"type": "image",
-							"texture": "textures/ui/armor_durability_viewer/offhand_slot",
-							"size": [22, 22],
-							"layer": 0
-						}
-					}
-				]
-			}
-		],
 
 		"bindings": [
 			{
 				"binding_type": "view",
-				"source_control_name": "offhand_item_renderer",
-				"source_property_name": "#visible",
-				"target_property_name": "#visible"
+				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_property_name": "#offhand_item",
+				"target_property_name": "#offhand_item"
+			},
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_property_name": "#offhand_durability",
+				"target_property_name": "#offhand_durability"
+			},
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_property_name": "#offhand_stack_count",
+				"target_property_name": "#offhand_stack_count"
+			}
+		],
+
+		"controls": [
+			{
+				"offhand_slot@hud_layout_kpadv.equipment_slot": {
+					"$renderer_data": "#offhand_item",
+					"$durability_data": "#offhand_durability",
+					"$slot_texture": "textures/ui/armor_durability_viewer/offhand_slot",
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_shield",
+					"$show_stack": true
+				}
 			}
 		]
 	},
@@ -118,27 +137,44 @@
 		"anchor_from": "bottom_middle",
 		"anchor_to": "bottom_middle",
 		"offset": [0, -1.5],
-
 		"controls": [
 			{
-				"biome_label@hud_kpadv.biome_label": {
-					"anchor_from": "top_middle",
-					"anchor_to": "top_middle",
-					"offset": [0, -22]
-				}
-			},
-			{
-				"offhand_slot@hud_layout_kpadv.offhand_slot": {
-					"anchor_from": "bottom_middle",
-					"anchor_to": "bottom_middle",
-					"offset": [-110, 0]
-				}
-			},
-			{
-				"armor_durability_viewer@hud_layout_kpadv.armor_durability_viewer_panel": {
-					"anchor_from": "bottom_middle",
-					"anchor_to": "bottom_middle",
-					"offset": [140, 0]
+				"data_carrier@hud_kpadv.parsed_data_carrier": {
+					"controls": [
+						{
+							"biome_label@hud_kpadv.biome_label": {
+								"anchor_from": "bottom_middle",
+								"anchor_to": "bottom_middle",
+								"offset": [-135, -5]
+							}
+						},
+						{
+							"offhand_slot@hud_layout_kpadv.equipment_slot": {
+								"$renderer_data": "#offhand_item",
+								"$durability_data": "#offhand_durability",
+								"$slot_texture": "textures/ui/armor_durability_viewer/offhand_slot",
+								"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_shield",
+								"$show_stack": true,
+								"anchor_from": "bottom_middle",
+								"anchor_to": "bottom_middle",
+								"offset": [-110, 0]
+							}
+						},
+						{
+							"armor_durability_viewer@hud_layout_kpadv.armor_durability_viewer_panel": {
+								"anchor_from": "bottom_middle",
+								"anchor_to": "bottom_middle",
+								"offset": [140, 0]
+							}
+						},
+						{
+							"debug_panel@hud_kpadv.debug_panel": {
+								"anchor_from": "bottom_middle",
+								"anchor_to": "bottom_middle",
+								"offset": [-235, -50]
+							}
+						}
+					]
 				}
 			}
 		],
