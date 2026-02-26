@@ -119,7 +119,7 @@
 		"offset": [0, -1.5],
 		"controls": [
 			{
-				"title_data@hud_kpadv.title_text_data": {
+				"title_text_data@hud_kpadv.title_text_data": {
 					"controls": [
 						{
 							"biome_label@hud_kpadv.biome_label": {
@@ -129,14 +129,14 @@
 							}
 						},
 						{
-							"offhand_instance@hud_layout_kpadv.offhand_slot": {
+							"offhand_slot@hud_layout_kpadv.offhand_slot": {
 								"anchor_from": "bottom_middle",
 								"anchor_to": "bottom_middle",
 								"offset": [-110, 0]
 							}
 						},
 						{
-							"armor_durability_viewer@hud_layout_kpadv.armor_durability_viewer_panel": {
+							"armor_durability_viewer_panel@hud_layout_kpadv.armor_durability_viewer_panel": {
 								"anchor_from": "bottom_middle",
 								"anchor_to": "bottom_middle",
 								"offset": [140, 0]

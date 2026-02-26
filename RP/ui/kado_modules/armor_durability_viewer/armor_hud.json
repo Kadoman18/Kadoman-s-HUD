@@ -1,6 +1,263 @@
 {
 	"namespace": "hud_kpadv",
 
+	"title_text_data": {
+		"type": "panel",
+		"size": [0, 0],
+		"alpha": 0,
+		"bindings": [
+			{ "binding_name": "#hud_title_text_string" },
+			{
+				"binding_name": "#hud_title_text_string",
+				"binding_name_override": "#preserved_title",
+				"binding_condition": "always"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(#preserved_title - 'kado:')",
+				"target_property_name": "#encoded_data_string",
+				"binding_condition": "always"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.4s' * #encoded_data_string)",
+				"target_property_name": "#biome_code",
+				"binding_condition": "always"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(('%.9s' * #encoded_data_string) - ('%.5s' * #encoded_data_string))",
+				"target_property_name": "#head_item",
+				"binding_condition": "always"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(('%.14s' * #encoded_data_string) - ('%.10s' * #encoded_data_string))",
+				"target_property_name": "#head_durability",
+				"binding_condition": "always"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(('%.19s' * #encoded_data_string) - ('%.15s' * #encoded_data_string))",
+				"target_property_name": "#chest_item",
+				"binding_condition": "always"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(('%.24s' * #encoded_data_string) - ('%.20s' * #encoded_data_string))",
+				"target_property_name": "#chest_durability",
+				"binding_condition": "always"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(('%.29s' * #encoded_data_string) - ('%.25s' * #encoded_data_string))",
+				"target_property_name": "#legs_item",
+				"binding_condition": "always"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(('%.34s' * #encoded_data_string) - ('%.30s' * #encoded_data_string))",
+				"target_property_name": "#legs_durability",
+				"binding_condition": "always"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(('%.39s' * #encoded_data_string) - ('%.35s' * #encoded_data_string))",
+				"target_property_name": "#feet_item",
+				"binding_condition": "always"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(('%.44s' * #encoded_data_string) - ('%.40s' * #encoded_data_string))",
+				"target_property_name": "#feet_durability",
+				"binding_condition": "always"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(('%.49s' * #encoded_data_string) - ('%.45s' * #encoded_data_string))",
+				"target_property_name": "#offhand_item",
+				"binding_condition": "always"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(('%.54s' * #encoded_data_string) - ('%.50s' * #encoded_data_string))",
+				"target_property_name": "#offhand_durability",
+				"binding_condition": "always"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(#encoded_data_string - ('%.55s' * #encoded_data_string))",
+				"target_property_name": "#offhand_stack_count",
+				"binding_condition": "always"
+			}
+		]
+	},
+
+	"biome_label": {
+		"type": "label",
+		"text": "#text",
+		"layer": 10,
+		"shadow": true,
+		"bindings": [
+			{ "binding_name": "#show_survival_ui" },
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_title_data_binding",
+				"source_property_name": "('§z' + #biome_code)",
+				"target_property_name": "#text"
+			}
+		]
+	},
+
+	"offhand_stack_count_label": {
+		"type": "label",
+		"text": "#text",
+		"anchor_to": "bottom_right",
+		"anchor_from": "bottom_right",
+		"offset": [0, 1],
+		"layer": 10,
+		"shadow": true,
+		"bindings": [
+			{ "binding_name": "#show_survival_ui" },
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_title_data_binding",
+				"source_property_name": "('0' + #offhand_stack_count)",
+				"target_property_name": "#stack_count_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "((#stack_count_text - '0') * 1)",
+				"target_property_name": "#stack_count_number"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('§z' + #stack_count_text - '0')",
+				"target_property_name": "#text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(((#stack_count_text - '9404') = #stack_count_text) and (#stack_count_number > 1) and #show_survival_ui)",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"offhand_stack_count_panel": {
+		"type": "panel",
+		"size": [18, 18],
+		"controls": [{ "stack_count@hud_kpadv.offhand_stack_count_label": {} }]
+	},
+
+	"durability_bar": {
+		"type": "custom",
+		"renderer": "progress_bar_renderer",
+		"size": [12, 1],
+		"offset": [0, 5],
+		"layer": 10,
+		"property_bag": {
+			"drop_shadow": true,
+			"is_durability": true,
+			"round_value": true,
+			"#default_progress_bar_total_amount": 1000
+		},
+		"bindings": [
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_title_data_binding",
+				"source_property_name": "('§z' + $durability_data)",
+				"target_property_name": "#item_renderer_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "#default_progress_bar_total_amount",
+				"target_property_name": "#progress_bar_total_amount"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "($durability_data * 1)",
+				"target_property_name": "#progress_bar_current_amount"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "((#item_renderer_text - '9404' - '1000') = #item_renderer_text)",
+				"target_property_name": "#touch_progress_bar_visible"
+			},
+			{ "binding_name": "#show_survival_ui", "binding_name_override": "#visible" }
+		]
+	},
+
+	"durability_bar_panel": {
+		"type": "panel",
+		"controls": [{ "durability_bar@hud_kpadv.durability_bar": {} }]
+	},
+
+	"empty_slot_icon": {
+		"type": "image",
+		"texture": "$empty_slot_icon_texture",
+		"size": [16, 16],
+		"layer": 1,
+		"bindings": [
+			{
+				"binding_type": "view",
+				"source_property_name": "(($renderer_data = '0000') or ($renderer_data = '#none'))",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"item_renderer@item_id_kpadv.item_id": {
+		"type": "image",
+		"texture": "#texture",
+		"size": [16, 16],
+		"layer": 2,
+		"bindings": [
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_title_data_binding",
+				"source_property_name": "('§z' + $renderer_data)",
+				"target_property_name": "#item_renderer_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(#item_renderer_text - '§z')",
+				"target_property_name": "#renderer_data"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(not (#item_renderer_text = '§z0000'))",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"item_renderer_panel": {
+		"type": "panel",
+		"size": ["100%cm", "100%cm"],
+		"$renderer_data|default": "#none",
+		"$durability_data|default": "#none",
+		"$additional_content|default": "hud_kpadv.durability_bar_panel",
+		"controls": [
+			{
+				"item_renderer@hud_kpadv.item_renderer": {
+					"$renderer_data": "$renderer_data"
+				}
+			},
+			{
+				"empty_slot_icon@hud_kpadv.empty_slot_icon": {
+					"$renderer_data": "$renderer_data"
+				}
+			},
+			{
+				"additional_content@$additional_content": {
+					"$renderer_data": "$renderer_data",
+					"$durability_data": "$durability_data",
+					"size": ["100%sm", "100%sm"]
+				}
+			}
+		]
+	},
+
 	"debug_value_label": {
 		"type": "label",
 		"text": "#text",
@@ -18,26 +275,26 @@
 		"propagate_alpha": true,
 		"controls": [
 			{
-				"label_raw@hud_kpadv.debug_value_label": {
-					"$label": "RAW TITLE: ",
+				"label_title@hud_kpadv.debug_value_label": {
+					"$label": "Raw Title: ",
 					"bindings": [
 						{
 							"binding_type": "view",
 							"source_control_name": "kpadv_title_data_binding",
-							"source_property_name": "($label + #preserved_text)",
+							"source_property_name": "($label + #preserved_title)",
 							"target_property_name": "#text"
 						}
 					]
 				}
 			},
 			{
-				"label_title@hud_kpadv.debug_value_label": {
-					"$label": "STRIPPED PREFIX: ",
+				"label_data@hud_kpadv.debug_value_label": {
+					"$label": "Encoded Data: ",
 					"bindings": [
 						{
 							"binding_type": "view",
 							"source_control_name": "kpadv_title_data_binding",
-							"source_property_name": "($label + (#preserved_text - 'kado:'))",
+							"source_property_name": "($label + #encoded_data_string)",
 							"target_property_name": "#text"
 						}
 					]
@@ -201,194 +458,5 @@
 			}
 		],
 		"bindings": [{ "binding_name": "#show_survival_ui" }]
-	},
-
-	"offhand_stack_count_label": {
-		"type": "label",
-		"text": "#text",
-		"anchor_to": "bottom_right",
-		"anchor_from": "bottom_right",
-		"offset": [0, 1],
-		"layer": 10,
-		"shadow": true,
-		"bindings": [
-			{ "binding_name": "#show_survival_ui" },
-			{
-				"binding_type": "view",
-				"source_control_name": "kpadv_title_data_binding",
-				"source_property_name": "('0' + #offhand_stack_count)",
-				"target_property_name": "#stack_count_text"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "((#stack_count_text - '0') * 1)",
-				"target_property_name": "#stack_count_number"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "('§z' + #stack_count_text - '0')",
-				"target_property_name": "#text"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(((#stack_count_text - '9404') = #stack_count_text) and (#stack_count_number > 1) and #show_survival_ui)",
-				"target_property_name": "#visible"
-			}
-		]
-	},
-
-	"offhand_stack_count_panel": {
-		"type": "panel",
-		"size": [18, 18],
-		"controls": [{ "stack_count@hud_kpadv.offhand_stack_count_label": {} }]
-	},
-
-	"durability_bar": {
-		"type": "custom",
-		"renderer": "progress_bar_renderer",
-		"size": [12, 1],
-		"offset": [0, 5],
-		"layer": 10,
-		"property_bag": {
-			"drop_shadow": true,
-			"is_durability": true,
-			"round_value": true,
-			"#default_progress_bar_total_amount": 1000
-		},
-		"bindings": [
-			{
-				"binding_type": "view",
-				"source_control_name": "kpadv_title_data_binding",
-				"source_property_name": "('§z' + $durability_data)",
-				"target_property_name": "#item_renderer_text"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "#default_progress_bar_total_amount",
-				"target_property_name": "#progress_bar_total_amount"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "($durability_data * 1)",
-				"target_property_name": "#progress_bar_current_amount"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "((#item_renderer_text - '9404' - '1000') = #item_renderer_text)",
-				"target_property_name": "#touch_progress_bar_visible"
-			},
-			{ "binding_name": "#show_survival_ui", "binding_name_override": "#visible" }
-		]
-	},
-
-	"durability_bar_panel": {
-		"type": "panel",
-		"controls": [{ "durability_bar@hud_kpadv.durability_bar": {} }]
-	},
-
-	"empty_slot_icon": {
-		"type": "image",
-		"texture": "$empty_slot_icon_texture",
-		"size": [16, 16],
-		"layer": 1,
-		"bindings": [
-			{
-				"binding_type": "view",
-				"source_property_name": "(($renderer_data = '0000') or ($renderer_data = '#none'))",
-				"target_property_name": "#visible"
-			}
-		]
-	},
-
-	"item_renderer@item_id_kpadv.item_id": {
-		"type": "image",
-		"texture": "#texture",
-		"size": [16, 16],
-		"layer": 2,
-		"bindings": [
-			{
-				"binding_type": "view",
-				"source_control_name": "kpadv_title_data_binding",
-				"source_property_name": "('§z' + $renderer_data)",
-				"target_property_name": "#item_renderer_text"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(#item_renderer_text - '§z')",
-				"target_property_name": "#renderer_data"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(not (#item_renderer_text = '§z0000'))",
-				"target_property_name": "#visible"
-			}
-		]
-	},
-
-	"item_renderer_panel": {
-		"type": "panel",
-		"size": ["100%cm", "100%cm"],
-		"$renderer_data|default": "#none",
-		"$durability_data|default": "#none",
-		"$additional_content|default": "hud_kpadv.durability_bar_panel",
-		"controls": [
-			{
-				"item_renderer@hud_kpadv.item_renderer": {
-					"$renderer_data": "$renderer_data"
-				}
-			},
-			{
-				"empty_slot_icon@hud_kpadv.empty_slot_icon": {
-					"$renderer_data": "$renderer_data"
-				}
-			},
-			{
-				"additional_content@$additional_content": {
-					"$renderer_data": "$renderer_data",
-					"$durability_data": "$durability_data",
-					"size": ["100%sm", "100%sm"]
-				}
-			}
-		]
-	},
-
-	"title_text_data": {
-		"type": "panel",
-		"size": [0, 0],
-		"alpha": 0,
-		"bindings": [
-			{ "binding_name": "#hud_title_text_string" },
-			{
-				"binding_name": "#hud_title_text_string",
-				"binding_name_override": "#preserved_text",
-				"binding_condition": "always"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(#preserved_text - 'kado:')",
-				"target_property_name": "#title_text"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "('%.4s' * #title_text)",
-				"target_property_name": "#biome_code"
-			}
-		]
-	},
-
-	"biome_label": {
-		"type": "label",
-		"text": "#text",
-		"layer": 10,
-		"shadow": true,
-		"bindings": [
-			{ "binding_name": "#show_survival_ui" },
-			{
-				"binding_type": "view",
-				"source_control_name": "kpadv_title_data_binding",
-				"source_property_name": "('§z' + #biome_code)",
-				"target_property_name": "#text"
-			}
-		]
 	}
 }
