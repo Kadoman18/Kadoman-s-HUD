@@ -172,9 +172,7 @@ function pad4(n) {
 function buildPlayerHUDString(player, biomeCode) {
 	const equipment = player.getComponent("equippable");
 
-	const title = "kado:" + pad4(biomeCode);
-
-	let subtitle = "kado:";
+	let title = "kado:" + pad4(biomeCode) + "|";
 	let offhandStack = 0;
 
 	for (const slot of armorSlots) {
@@ -182,15 +180,17 @@ function buildPlayerHUDString(player, biomeCode) {
 
 		/* ---------- ITEM CODE ---------- */
 		const itemCode = item ? (itemIdList[item.typeId] ?? 0) : 0;
-		subtitle += pad4(itemCode) + "|";
+		title += pad4(itemCode) + "|";
 
 		/* ---------- DURABILITY ---------- */
 		if (item && item.hasComponent("minecraft:durability")) {
-			const d = item.getComponent("minecraft:durability");
-			const percent = Math.floor(((d.maxDurability - d.damage) / d.maxDurability) * 1000);
-			subtitle += pad4(percent) + "|";
+			const durability = item.getComponent("minecraft:durability");
+			const percent = Math.floor(
+				((durability.maxDurability - durability.damage) / durability.maxDurability) * 1000,
+			);
+			title += pad4(percent) + "|";
 		} else {
-			subtitle += "9404|";
+			title += "9404|";
 		}
 
 		/* ---------- OFFHAND STACK (ONLY ONCE) ---------- */
@@ -200,12 +200,9 @@ function buildPlayerHUDString(player, biomeCode) {
 	}
 
 	/* append stack count AFTER loop */
-	subtitle += pad4(offhandStack);
+	title += pad4(offhandStack);
 
-	return {
-		info: title,
-		durability: subtitle,
-	};
+	return title;
 }
 
 /* --------------------------------------------------------- */
@@ -220,13 +217,12 @@ function getPlayerBiomeCode(player) {
 	}
 }
 
-function updatePlayerDisplay(player, info, durability) {
-	console.log(`Title: ${info}\nSubtitle: ${durability}`);
-	player.onScreenDisplay.setTitle(info, {
+function updatePlayerDisplay(player, title) {
+	console.log(`Title: ${title}`);
+	player.onScreenDisplay.setTitle(title, {
 		stayDuration: 1,
 		fadeInDuration: 0,
 		fadeOutDuration: 0,
-		subtitle: durability,
 	});
 }
 
@@ -235,18 +231,18 @@ system.runInterval(() => {
 		const biomeCode = getPlayerBiomeCode(player);
 		const prev = playerCache.get(player.id);
 
-		const { info, durability } = buildPlayerHUDString(player, biomeCode);
+		const title = buildPlayerHUDString(player, biomeCode);
 
-		if (!prev || prev.info !== info || prev.durability !== durability) {
-			playerCache.set(player.id, { info, durability, biomeCode });
-			updatePlayerDisplay(player, info, durability);
+		if (prev !== title) {
+			playerCache.set(player.id, title);
+			updatePlayerDisplay(player, title);
 		}
 	}
 }, 10);
 
 world.afterEvents.playerSpawn.subscribe(({ player }) => {
 	const biomeCode = getPlayerBiomeCode(player);
-	const { info, durability } = buildPlayerHUDString(player, biomeCode);
-	playerCache.set(player.id, { info, durability, biomeCode });
-	updatePlayerDisplay(player, info, durability);
+	const title = buildPlayerHUDString(player, biomeCode);
+	playerCache.set(player.id, title);
+	updatePlayerDisplay(player, title);
 });

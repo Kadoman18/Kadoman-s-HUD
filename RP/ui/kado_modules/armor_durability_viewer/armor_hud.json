@@ -1,86 +1,6 @@
 {
 	"namespace": "hud_kpadv",
 
-	"parsed_data_carrier": {
-		"type": "panel",
-		"size": [0, 0],
-		"bindings": [
-			{
-				"binding_type": "view",
-				"source_control_name": "kpadv_subtitle_data_binding",
-				"source_property_name": "('' + #subtitle_text)",
-				"target_property_name": "#subtitle_text_str",
-				"binding_condition": "always"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "('%.4s' * #subtitle_text_str)",
-				"target_property_name": "#head_item",
-				"binding_condition": "always"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(('%.9s' * #subtitle_text_str) - ('%.5s' * #subtitle_text_str))",
-				"target_property_name": "#head_durability",
-				"binding_condition": "always"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(('%.14s' * #subtitle_text_str) - ('%.10s' * #subtitle_text_str))",
-				"target_property_name": "#chest_item",
-				"binding_condition": "always"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(('%.19s' * #subtitle_text_str) - ('%.15s' * #subtitle_text_str))",
-				"target_property_name": "#chest_durability",
-				"binding_condition": "always"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(('%.24s' * #subtitle_text_str) - ('%.20s' * #subtitle_text_str))",
-				"target_property_name": "#legs_item",
-				"binding_condition": "always"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(('%.29s' * #subtitle_text_str) - ('%.25s' * #subtitle_text_str))",
-				"target_property_name": "#legs_durability",
-				"binding_condition": "always"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(('%.34s' * #subtitle_text_str) - ('%.30s' * #subtitle_text_str))",
-				"target_property_name": "#feet_item",
-				"binding_condition": "always"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(('%.39s' * #subtitle_text_str) - ('%.35s' * #subtitle_text_str))",
-				"target_property_name": "#feet_durability",
-				"binding_condition": "always"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(('%.44s' * #subtitle_text_str) - ('%.40s' * #subtitle_text_str))",
-				"target_property_name": "#offhand_item",
-				"binding_condition": "always"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(('%.49s' * #subtitle_text_str) - ('%.45s' * #subtitle_text_str))",
-				"target_property_name": "#offhand_durability",
-				"binding_condition": "always"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(('%.54s' * #subtitle_text_str) - ('%.50s' * #subtitle_text_str))",
-				"target_property_name": "#offhand_stack_count",
-				"binding_condition": "always"
-			}
-		]
-	},
-
 	"debug_value_label": {
 		"type": "label",
 		"text": "#text",
@@ -90,7 +10,7 @@
 		"bindings": [{ "binding_name": "#show_survival_ui" }]
 	},
 
-	"subtitle_debug_panel": {
+	"title_debug_panel": {
 		"type": "stack_panel",
 		"orientation": "vertical",
 		"layer": 100,
@@ -98,7 +18,7 @@
 		"propagate_alpha": true,
 		"controls": [
 			{
-				"label_title@hud_kpadv.debug_value_label": {
+				"label_raw@hud_kpadv.debug_value_label": {
 					"$label": "RAW TITLE: ",
 					"bindings": [
 						{
@@ -112,7 +32,7 @@
 			},
 			{
 				"label_title@hud_kpadv.debug_value_label": {
-					"$label": "STRIPPED TITLE: ",
+					"$label": "STRIPPED PREFIX: ",
 					"bindings": [
 						{
 							"binding_type": "view",
@@ -124,26 +44,13 @@
 				}
 			},
 			{
-				"label_raw@hud_kpadv.debug_value_label": {
-					"$label": "RAW SUBTITLE: ",
+				"label_biome@hud_kpadv.debug_value_label": {
+					"$label": "Biome: ",
 					"bindings": [
 						{
 							"binding_type": "view",
-							"source_control_name": "kpadv_subtitle_data_binding",
-							"source_property_name": "($label + #preserved_text)",
-							"target_property_name": "#text"
-						}
-					]
-				}
-			},
-			{
-				"label_subtitle@hud_kpadv.debug_value_label": {
-					"$label": "STRIPPED PREFIX: ",
-					"bindings": [
-						{
-							"binding_type": "view",
-							"source_control_name": "kpadv_subtitle_data_binding",
-							"source_property_name": "($label + (#preserved_text - 'kado:'))",
+							"source_control_name": "kpadv_title_data_binding",
+							"source_property_name": "($label + #biome_code)",
 							"target_property_name": "#text"
 						}
 					]
@@ -155,7 +62,7 @@
 					"bindings": [
 						{
 							"binding_type": "view",
-							"source_control_name": "parsed_data_carrier",
+							"source_control_name": "kpadv_title_data_binding",
 							"source_property_name": "($label + #head_item)",
 							"target_property_name": "#text"
 						}
@@ -168,7 +75,7 @@
 					"bindings": [
 						{
 							"binding_type": "view",
-							"source_control_name": "parsed_data_carrier",
+							"source_control_name": "kpadv_title_data_binding",
 							"source_property_name": "($label + #head_durability)",
 							"target_property_name": "#text"
 						}
@@ -181,7 +88,7 @@
 					"bindings": [
 						{
 							"binding_type": "view",
-							"source_control_name": "parsed_data_carrier",
+							"source_control_name": "kpadv_title_data_binding",
 							"source_property_name": "($label + #chest_item)",
 							"target_property_name": "#text"
 						}
@@ -194,7 +101,7 @@
 					"bindings": [
 						{
 							"binding_type": "view",
-							"source_control_name": "parsed_data_carrier",
+							"source_control_name": "kpadv_title_data_binding",
 							"source_property_name": "($label + #chest_durability)",
 							"target_property_name": "#text"
 						}
@@ -207,7 +114,7 @@
 					"bindings": [
 						{
 							"binding_type": "view",
-							"source_control_name": "parsed_data_carrier",
+							"source_control_name": "kpadv_title_data_binding",
 							"source_property_name": "($label + #legs_item)",
 							"target_property_name": "#text"
 						}
@@ -220,7 +127,7 @@
 					"bindings": [
 						{
 							"binding_type": "view",
-							"source_control_name": "parsed_data_carrier",
+							"source_control_name": "kpadv_title_data_binding",
 							"source_property_name": "($label + #legs_durability)",
 							"target_property_name": "#text"
 						}
@@ -233,7 +140,7 @@
 					"bindings": [
 						{
 							"binding_type": "view",
-							"source_control_name": "parsed_data_carrier",
+							"source_control_name": "kpadv_title_data_binding",
 							"source_property_name": "($label + #feet_item)",
 							"target_property_name": "#text"
 						}
@@ -246,7 +153,7 @@
 					"bindings": [
 						{
 							"binding_type": "view",
-							"source_control_name": "parsed_data_carrier",
+							"source_control_name": "kpadv_title_data_binding",
 							"source_property_name": "($label + #feet_durability)",
 							"target_property_name": "#text"
 						}
@@ -259,7 +166,7 @@
 					"bindings": [
 						{
 							"binding_type": "view",
-							"source_control_name": "parsed_data_carrier",
+							"source_control_name": "kpadv_title_data_binding",
 							"source_property_name": "($label + #offhand_item)",
 							"target_property_name": "#text"
 						}
@@ -272,7 +179,7 @@
 					"bindings": [
 						{
 							"binding_type": "view",
-							"source_control_name": "parsed_data_carrier",
+							"source_control_name": "kpadv_title_data_binding",
 							"source_property_name": "($label + #offhand_durability)",
 							"target_property_name": "#text"
 						}
@@ -285,7 +192,7 @@
 					"bindings": [
 						{
 							"binding_type": "view",
-							"source_control_name": "parsed_data_carrier",
+							"source_control_name": "kpadv_title_data_binding",
 							"source_property_name": "($label + #offhand_stack_count)",
 							"target_property_name": "#text"
 						}
@@ -308,7 +215,7 @@
 			{ "binding_name": "#show_survival_ui" },
 			{
 				"binding_type": "view",
-				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_control_name": "kpadv_title_data_binding",
 				"source_property_name": "('0' + #offhand_stack_count)",
 				"target_property_name": "#stack_count_text"
 			},
@@ -351,7 +258,7 @@
 		"bindings": [
 			{
 				"binding_type": "view",
-				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_control_name": "kpadv_title_data_binding",
 				"source_property_name": "('§z' + $durability_data)",
 				"target_property_name": "#item_renderer_text"
 			},
@@ -401,7 +308,7 @@
 		"bindings": [
 			{
 				"binding_type": "view",
-				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_control_name": "kpadv_title_data_binding",
 				"source_property_name": "('§z' + $renderer_data)",
 				"target_property_name": "#item_renderer_text"
 			},
@@ -448,51 +355,23 @@
 	"title_text_data": {
 		"type": "panel",
 		"size": [0, 0],
+		"alpha": 0,
 		"bindings": [
 			{ "binding_name": "#hud_title_text_string" },
 			{
 				"binding_name": "#hud_title_text_string",
-				"binding_name_override": "#preserved_text",
-				"binding_condition": "visibility_changed"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(not (#hud_title_text_string = #preserved_text) and not ((#hud_title_text_string - 'kado:') = #hud_title_text_string))",
-				"target_property_name": "#visible"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "(#preserved_text - 'kado:')",
-				"target_property_name": "#biome_code"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "('#' + #biome_code)",
-				"target_property_name": "#biome_key"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "biome_id_kpadv.biome_id[#biome_key]",
-				"target_property_name": "#biome_name"
-			}
-		]
-	},
-
-	"subtitle_text_data": {
-		"type": "panel",
-		"size": [0, 0],
-		"alpha": 0,
-		"bindings": [
-			{ "binding_name": "#hud_subtitle_text_string" },
-			{
-				"binding_name": "#hud_subtitle_text_string",
 				"binding_name_override": "#preserved_text",
 				"binding_condition": "always"
 			},
 			{
 				"binding_type": "view",
 				"source_property_name": "(#preserved_text - 'kado:')",
-				"target_property_name": "#subtitle_text"
+				"target_property_name": "#title_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.4s' * #title_text)",
+				"target_property_name": "#biome_code"
 			}
 		]
 	},
