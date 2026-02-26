@@ -4,7 +4,7 @@
 	"equipment_slot": {
 		"type": "panel",
 		"$renderer_data|default": "#none",
-		"$durability_data|default": "#none", // 7. $durability_data = from 4th to 8th numbers string
+		"$durability_data|default": "#none",
 		"$slot_texture|default": "textures/ui/hotbar_0",
 		"$empty_slot_icon_texture|default": "textures/ui/armor_durability_viewer/empty_armor_slot_helmet",
 		"$show_stack|default": false,

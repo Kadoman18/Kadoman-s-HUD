@@ -16,67 +16,67 @@
 				"binding_type": "view",
 				"source_property_name": "('%.4s' * #subtitle_text_str)",
 				"target_property_name": "#head_item",
-				"binding_condition": "visibility_changed"
+				"binding_condition": "always"
 			},
 			{
 				"binding_type": "view",
 				"source_property_name": "(('%.9s' * #subtitle_text_str) - ('%.5s' * #subtitle_text_str))",
 				"target_property_name": "#head_durability",
-				"binding_condition": "visibility_changed"
+				"binding_condition": "always"
 			},
 			{
 				"binding_type": "view",
 				"source_property_name": "(('%.14s' * #subtitle_text_str) - ('%.10s' * #subtitle_text_str))",
 				"target_property_name": "#chest_item",
-				"binding_condition": "visibility_changed"
+				"binding_condition": "always"
 			},
 			{
 				"binding_type": "view",
 				"source_property_name": "(('%.19s' * #subtitle_text_str) - ('%.15s' * #subtitle_text_str))",
 				"target_property_name": "#chest_durability",
-				"binding_condition": "visibility_changed"
+				"binding_condition": "always"
 			},
 			{
 				"binding_type": "view",
 				"source_property_name": "(('%.24s' * #subtitle_text_str) - ('%.20s' * #subtitle_text_str))",
 				"target_property_name": "#legs_item",
-				"binding_condition": "visibility_changed"
+				"binding_condition": "always"
 			},
 			{
 				"binding_type": "view",
 				"source_property_name": "(('%.29s' * #subtitle_text_str) - ('%.25s' * #subtitle_text_str))",
 				"target_property_name": "#legs_durability",
-				"binding_condition": "visibility_changed"
+				"binding_condition": "always"
 			},
 			{
 				"binding_type": "view",
 				"source_property_name": "(('%.34s' * #subtitle_text_str) - ('%.30s' * #subtitle_text_str))",
 				"target_property_name": "#feet_item",
-				"binding_condition": "visibility_changed"
+				"binding_condition": "always"
 			},
 			{
 				"binding_type": "view",
 				"source_property_name": "(('%.39s' * #subtitle_text_str) - ('%.35s' * #subtitle_text_str))",
 				"target_property_name": "#feet_durability",
-				"binding_condition": "visibility_changed"
+				"binding_condition": "always"
 			},
 			{
 				"binding_type": "view",
 				"source_property_name": "(('%.44s' * #subtitle_text_str) - ('%.40s' * #subtitle_text_str))",
 				"target_property_name": "#offhand_item",
-				"binding_condition": "visibility_changed"
+				"binding_condition": "always"
 			},
 			{
 				"binding_type": "view",
 				"source_property_name": "(('%.49s' * #subtitle_text_str) - ('%.45s' * #subtitle_text_str))",
 				"target_property_name": "#offhand_durability",
-				"binding_condition": "visibility_changed"
+				"binding_condition": "always"
 			},
 			{
 				"binding_type": "view",
 				"source_property_name": "(('%.54s' * #subtitle_text_str) - ('%.50s' * #subtitle_text_str))",
 				"target_property_name": "#offhand_stack_count",
-				"binding_condition": "visibility_changed"
+				"binding_condition": "always"
 			}
 		]
 	},
@@ -98,6 +98,32 @@
 		"propagate_alpha": true,
 		"controls": [
 			{
+				"label_title@hud_kpadv.debug_value_label": {
+					"$label": "RAW TITLE: ",
+					"bindings": [
+						{
+							"binding_type": "view",
+							"source_control_name": "kpadv_title_data_binding",
+							"source_property_name": "($label + #preserved_text)",
+							"target_property_name": "#text"
+						}
+					]
+				}
+			},
+			{
+				"label_title@hud_kpadv.debug_value_label": {
+					"$label": "STRIPPED TITLE: ",
+					"bindings": [
+						{
+							"binding_type": "view",
+							"source_control_name": "kpadv_title_data_binding",
+							"source_property_name": "($label + (#preserved_text - 'kado:'))",
+							"target_property_name": "#text"
+						}
+					]
+				}
+			},
+			{
 				"label_raw@hud_kpadv.debug_value_label": {
 					"$label": "RAW SUBTITLE: ",
 					"bindings": [
@@ -112,12 +138,12 @@
 			},
 			{
 				"label_subtitle@hud_kpadv.debug_value_label": {
-					"$label": "REMOVED PREFIX: ",
+					"$label": "STRIPPED PREFIX: ",
 					"bindings": [
 						{
 							"binding_type": "view",
 							"source_control_name": "kpadv_subtitle_data_binding",
-							"source_property_name": "($label + #subtitle_text)",
+							"source_property_name": "($label + (#preserved_text - 'kado:'))",
 							"target_property_name": "#text"
 						}
 					]
@@ -461,7 +487,7 @@
 			{
 				"binding_name": "#hud_subtitle_text_string",
 				"binding_name_override": "#preserved_text",
-				"binding_condition": "visibility_changed"
+				"binding_condition": "always"
 			},
 			{
 				"binding_type": "view",
