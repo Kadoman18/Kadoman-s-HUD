@@ -4,7 +4,7 @@
 			{ "binding_name": "#hud_title_text_string" },
 			{
 				"binding_type": "view",
-				"source_property_name": "((#hud_title_text_string - 'kado:') = #hud_title_text_string)",
+				"source_property_name": "(not(#hud_title_text_string = #hud_title_text_string))",
 				"target_property_name": "#visible"
 			}
 		]

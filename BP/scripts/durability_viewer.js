@@ -167,42 +167,47 @@ function pad4(n) {
 }
 
 /* --------------------------------------------------------- */
-/* HUD ENCODER (FIXED WIDTH OUTPUT)                          */
+/* HUD ENCODER (LEADING PIPE VERSION)                        */
 /* --------------------------------------------------------- */
 function buildPlayerHUDString(player, biomeCode) {
-	const equipment = player.getComponent("equippable");
+        const equipment = player.getComponent("equippable");
 
-	let title = "kado:" + pad4(biomeCode) + "|";
-	let offhandStack = 0;
+        /* Start with leading pipe */
+        let title = "|" + pad4(biomeCode);
+        let offhandStack = 0;
 
-	for (const slot of armorSlots) {
-		const item = equipment.getEquipment(slot);
+        for (const slot of armorSlots) {
+                const item = equipment.getEquipment(slot);
 
-		/* ---------- ITEM CODE ---------- */
-		const itemCode = item ? (itemIdList[item.typeId] ?? 0) : 0;
-		title += pad4(itemCode) + "|";
+                /* ---------- ITEM CODE ---------- */
+                const itemCode = item ? (itemIdList[item.typeId] ?? 0) : 0;
+                title += "|" + pad4(itemCode);
 
-		/* ---------- DURABILITY ---------- */
-		if (item && item.hasComponent("minecraft:durability")) {
-			const durability = item.getComponent("minecraft:durability");
-			const percent = Math.floor(
-				((durability.maxDurability - durability.damage) / durability.maxDurability) * 1000,
-			);
-			title += pad4(percent) + "|";
-		} else {
-			title += "9404|";
-		}
+                /* ---------- DURABILITY ---------- */
+                if (item && item.hasComponent("minecraft:durability")) {
+                        const durability = item.getComponent("minecraft:durability");
 
-		/* ---------- OFFHAND STACK (ONLY ONCE) ---------- */
-		if (slot === EquipmentSlot.Offhand) {
-			offhandStack = item ? item.amount : 0;
-		}
-	}
+                        const percent = Math.floor(
+                                ((durability.maxDurability - durability.damage) /
+                                        durability.maxDurability) *
+                                        1000
+                        );
 
-	/* append stack count AFTER loop */
-	title += pad4(offhandStack);
+                        title += "|" + pad4(percent);
+                } else {
+                        title += "|9404";
+                }
 
-	return title;
+                /* ---------- OFFHAND STACK (ONLY ONCE) ---------- */
+                if (slot === EquipmentSlot.Offhand) {
+                        offhandStack = item ? item.amount : 0;
+                }
+        }
+
+        /* append stack count AFTER loop */
+        title += "|" + pad4(offhandStack);
+
+        return title;
 }
 
 /* --------------------------------------------------------- */

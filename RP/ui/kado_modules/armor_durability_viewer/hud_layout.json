@@ -125,7 +125,7 @@
 							"biome_label@hud_kpadv.biome_label": {
 								"anchor_from": "bottom_middle",
 								"anchor_to": "bottom_middle",
-								"offset": [-220, -5]
+								"offset": [-150, -5]
 							}
 						},
 						{

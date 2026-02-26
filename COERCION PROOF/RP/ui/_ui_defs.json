@@ -1,8 +1,0 @@
-{
-	"ui_defs": [
-		"ui/kado_modules/armor_durability_viewer/armor_hud.json",
-		"ui/kado_modules/armor_durability_viewer/hud_layout.json",
-		"ui/kado_modules/armor_durability_viewer/armor_hud_item_ids.json",
-		"ui/kado_modules/biome_overlay/biome_ids.json"
-	]
-}

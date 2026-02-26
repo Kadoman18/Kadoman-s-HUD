@@ -9,90 +9,91 @@
 			{ "binding_name": "#hud_title_text_string" },
 			{
 				"binding_name": "#hud_title_text_string",
-				"binding_name_override": "#preserved_title",
+				"binding_name_override": "#encoded_data_string",
 				"binding_condition": "always"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "('§z' + (#preserved_title - 'kado:'))",
-				"target_property_name": "#encoded_data_string"
-			},
-			{
-				"binding_type": "view",
-				"source_property_name": "('%.4s' * #encoded_data_string)",
+				"source_property_name": "(('%.5s' * #encoded_data_string) - ('%.1s' * #encoded_data_string))",
 				"target_property_name": "#biome_code"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(('%.9s' * #encoded_data_string) - ('%.5s' * #encoded_data_string))",
+				"source_property_name": "(('%.10s' * #encoded_data_string) - ('%.6s' * #encoded_data_string))",
 				"target_property_name": "#head_item"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(('%.14s' * #encoded_data_string) - ('%.10s' * #encoded_data_string))",
+				"source_property_name": "(('%.15s' * #encoded_data_string) - ('%.11s' * #encoded_data_string))",
 				"target_property_name": "#head_durability"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(('%.19s' * #encoded_data_string) - ('%.15s' * #encoded_data_string))",
+				"source_property_name": "(('%.20s' * #encoded_data_string) - ('%.16s' * #encoded_data_string))",
 				"target_property_name": "#chest_item"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(('%.24s' * #encoded_data_string) - ('%.20s' * #encoded_data_string))",
+				"source_property_name": "(('%.25s' * #encoded_data_string) - ('%.21s' * #encoded_data_string))",
 				"target_property_name": "#chest_durability"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(('%.29s' * #encoded_data_string) - ('%.25s' * #encoded_data_string))",
+				"source_property_name": "(('%.30s' * #encoded_data_string) - ('%.26s' * #encoded_data_string))",
 				"target_property_name": "#legs_item"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(('%.34s' * #encoded_data_string) - ('%.30s' * #encoded_data_string))",
+				"source_property_name": "(('%.35s' * #encoded_data_string) - ('%.31s' * #encoded_data_string))",
 				"target_property_name": "#legs_durability"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(('%.39s' * #encoded_data_string) - ('%.35s' * #encoded_data_string))",
+				"source_property_name": "(('%.40s' * #encoded_data_string) - ('%.36s' * #encoded_data_string))",
 				"target_property_name": "#feet_item"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(('%.44s' * #encoded_data_string) - ('%.40s' * #encoded_data_string))",
+				"source_property_name": "(('%.45s' * #encoded_data_string) - ('%.41s' * #encoded_data_string))",
 				"target_property_name": "#feet_durability"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(('%.49s' * #encoded_data_string) - ('%.45s' * #encoded_data_string))",
+				"source_property_name": "(('%.50s' * #encoded_data_string) - ('%.46s' * #encoded_data_string))",
 				"target_property_name": "#offhand_item"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(('%.54s' * #encoded_data_string) - ('%.50s' * #encoded_data_string))",
+				"source_property_name": "(('%.55s' * #encoded_data_string) - ('%.51s' * #encoded_data_string))",
 				"target_property_name": "#offhand_durability"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(#encoded_data_string - ('%.55s' * #encoded_data_string))",
+				"source_property_name": "(('%.60s' * #encoded_data_string) - ('%.56s' * #encoded_data_string))",
 				"target_property_name": "#offhand_stack_count"
 			}
 		]
 	},
 
-	"biome_label": {
+	"biome_label@biome_id_kpadv.biome_id": {
 		"type": "label",
 		"text": "#text",
-		"layer": 10,
+		"font_size": "small",
+		"layer": 15,
 		"shadow": true,
 		"bindings": [
-			{ "binding_name": "#show_survival_ui" },
 			{
 				"binding_type": "view",
 				"source_control_name": "kpadv_title_data_binding",
 				"source_property_name": "('§z' + #biome_code)",
+				"target_property_name": "#biome_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('#' + (#biome_text - '§z'))",
 				"target_property_name": "#text"
-			}
+			},
+			{ "binding_name": "#show_survival_ui", "binding_name_override": "#visible" }
 		]
 	},
 
@@ -119,7 +120,7 @@
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "('§z' + #stack_count_text - '0')",
+				"source_property_name": "(#stack_count_text - '0')",
 				"target_property_name": "#text"
 			},
 			{
@@ -152,7 +153,7 @@
 			{
 				"binding_type": "view",
 				"source_control_name": "kpadv_title_data_binding",
-				"source_property_name": "('§z' + $durability_data)",
+				"source_property_name": "($durability_data)",
 				"target_property_name": "#item_renderer_text"
 			},
 			{
@@ -202,17 +203,17 @@
 			{
 				"binding_type": "view",
 				"source_control_name": "kpadv_title_data_binding",
-				"source_property_name": "('§z' + $renderer_data)",
+				"source_property_name": "('#' + $renderer_data)",
 				"target_property_name": "#item_renderer_text"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(#item_renderer_text - '§z')",
+				"source_property_name": "(#item_renderer_text)",
 				"target_property_name": "#renderer_data"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(not (#item_renderer_text = '§z0000'))",
+				"source_property_name": "(not (#item_renderer_text = '0000'))",
 				"target_property_name": "#visible"
 			}
 		]
@@ -245,6 +246,13 @@
 		]
 	},
 
+	"debug_biome_name@biome_id_kpadv.biome_id": {
+		"type": "label",
+		"font_size": "small",
+		"shadow": true,
+		"text": "#text"
+	},
+
 	"debug_value_label": {
 		"type": "label",
 		"text": "#text",
@@ -261,19 +269,6 @@
 		"offset": [2, 40],
 		"propagate_alpha": true,
 		"controls": [
-			{
-				"label_title@hud_kpadv.debug_value_label": {
-					"$label": "Raw Title: ",
-					"bindings": [
-						{
-							"binding_type": "view",
-							"source_control_name": "kpadv_title_data_binding",
-							"source_property_name": "($label + #preserved_title)",
-							"target_property_name": "#text"
-						}
-					]
-				}
-			},
 			{
 				"label_data@hud_kpadv.debug_value_label": {
 					"$label": "Encoded Data: ",
