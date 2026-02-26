@@ -78,7 +78,7 @@
 	"biome_label@biome_id_kpadv.biome_id": {
 		"type": "label",
 		"text": "#text",
-		"font_size": "small",
+		"font_size": "medium",
 		"layer": 15,
 		"shadow": true,
 		"bindings": [
