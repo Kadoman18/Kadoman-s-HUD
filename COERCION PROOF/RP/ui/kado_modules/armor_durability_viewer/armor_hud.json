@@ -14,7 +14,7 @@
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "('§z' + (#preserved_title - 'kado:'))",
+				"source_property_name": "(#preserved_title - 'kado:')",
 				"target_property_name": "#encoded_data_string"
 			},
 			{
@@ -90,7 +90,7 @@
 			{
 				"binding_type": "view",
 				"source_control_name": "kpadv_title_data_binding",
-				"source_property_name": "('§z' + #biome_code)",
+				"source_property_name": "('#' + #biome_code)",
 				"target_property_name": "#text"
 			}
 		]
@@ -124,7 +124,7 @@
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(((#stack_count_text - '9404') = #stack_count_text) and (#stack_count_number > 1) and #show_survival_ui)",
+				"source_property_name": "(((#stack_count_text - 'qAOA') = #stack_count_text) and (not (#stack_count_number = I) and #show_survival_ui)",
 				"target_property_name": "#visible"
 			}
 		]
@@ -187,7 +187,7 @@
 		"bindings": [
 			{
 				"binding_type": "view",
-				"source_property_name": "(($renderer_data = '0000') or ($renderer_data = '#none'))",
+				"source_property_name": "(($renderer_data = 'OOOO') or ($renderer_data = '#none'))",
 				"target_property_name": "#visible"
 			}
 		]
@@ -202,7 +202,7 @@
 			{
 				"binding_type": "view",
 				"source_control_name": "kpadv_title_data_binding",
-				"source_property_name": "('§z' + $renderer_data)",
+				"source_property_name": "($renderer_data)",
 				"target_property_name": "#item_renderer_text"
 			},
 			{
@@ -212,7 +212,7 @@
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(not (#item_renderer_text = '§z0000'))",
+				"source_property_name": "(not (#item_renderer_text = 'OOOO'))",
 				"target_property_name": "#visible"
 			}
 		]

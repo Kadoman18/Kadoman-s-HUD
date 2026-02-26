@@ -1,0 +1,29 @@
+{
+	"hud_title_text/title_frame": {
+		"bindings": [
+			{ "binding_name": "#hud_title_text_string" },
+			{
+				"binding_type": "view",
+				"source_property_name": "((#hud_title_text_string - 'kado:') = #hud_title_text_string)",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"root_panel": {
+		"modifications": [
+			{
+				"array_name": "controls",
+				"operation": "insert_front",
+				"value": [
+					{
+						"kpadv_title_data_binding@hud_kpadv.title_text_data": {}
+					},
+					{
+						"kpadv_content@hud_layout_kpadv.kpadv_content": {}
+					}
+				]
+			}
+		]
+	}
+}

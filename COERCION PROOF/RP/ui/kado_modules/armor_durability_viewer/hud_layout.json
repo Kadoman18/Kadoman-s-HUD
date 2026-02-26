@@ -1,0 +1,164 @@
+{
+	"namespace": "hud_layout_kpadv",
+
+	"equipment_slot": {
+		"type": "panel",
+		"$renderer_data|default": "#none",
+		"$durability_data|default": "#none",
+		"$slot_texture|default": "textures/ui/hotbar_0",
+		"$empty_slot_icon_texture|default": "textures/ui/armor_durability_viewer/empty_armor_slot_helmet",
+		"$show_stack|default": false,
+		"controls": [
+			{
+				"slot_background": {
+					"type": "image",
+					"texture": "$slot_texture",
+					"size": ["100%", 22],
+					"layer": 0
+				}
+			},
+			{
+				"renderer@hud_kpadv.item_renderer_panel": {
+					"$renderer_data": "$renderer_data",
+					"$durability_data": "$durability_data",
+					"$empty_slot_icon_texture": "$empty_slot_icon_texture",
+					"layer": 1
+				}
+			},
+			{
+				"stack_count@hud_kpadv.offhand_stack_count_panel": {
+					"visible": "$show_stack"
+				}
+			}
+		]
+	},
+
+	"armor_durability_viewer_panel": {
+		"type": "stack_panel",
+		"orientation": "horizontal",
+		"size": ["100%c", "100%cm"],
+		"anchor_from": "top_left",
+		"anchor_to": "top_left",
+
+		"controls": [
+			{
+				"hotbar_start_cap": {
+					"type": "image",
+					"texture": "textures/ui/hotbar_start_cap",
+					"size": [1, 22]
+				}
+			},
+			{
+				"head_slot@hud_layout_kpadv.equipment_slot": {
+					"size": [20, 22],
+					"$renderer_data": "#head_item",
+					"$durability_data": "#head_durability",
+					"$slot_texture": "textures/ui/hotbar_0",
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_helmet"
+				}
+			},
+			{
+				"chest_slot@hud_layout_kpadv.equipment_slot": {
+					"size": [20, 22],
+					"$renderer_data": "#chest_item",
+					"$durability_data": "#chest_durability",
+					"$slot_texture": "textures/ui/hotbar_3",
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_chestplate"
+				}
+			},
+			{
+				"legs_slot@hud_layout_kpadv.equipment_slot": {
+					"size": [20, 22],
+					"$renderer_data": "#legs_item",
+					"$durability_data": "#legs_durability",
+					"$slot_texture": "textures/ui/hotbar_6",
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_leggings"
+				}
+			},
+			{
+				"feet_slot@hud_layout_kpadv.equipment_slot": {
+					"size": [20, 22],
+					"$renderer_data": "#feet_item",
+					"$durability_data": "#feet_durability",
+					"$slot_texture": "textures/ui/hotbar_8",
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_boots"
+				}
+			},
+			{
+				"hotbar_end_cap": {
+					"type": "image",
+					"texture": "textures/ui/hotbar_end_cap",
+					"size": [1, 22]
+				}
+			}
+		]
+	},
+
+	"offhand_slot": {
+		"type": "panel",
+		"size": [22, 22],
+		"controls": [
+			{
+				"offhand_equipment@hud_layout_kpadv.equipment_slot": {
+					"size": [22, 22],
+					"$renderer_data": "#offhand_item",
+					"$durability_data": "#offhand_durability",
+					"$slot_texture": "textures/ui/armor_durability_viewer/offhand_slot",
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_shield",
+					"$show_stack": true
+				}
+			}
+		]
+	},
+
+	"kpadv_content": {
+		"type": "panel",
+		"size": ["100%c", "100%cm"],
+		"anchor_from": "bottom_middle",
+		"anchor_to": "bottom_middle",
+		"offset": [0, -1.5],
+		"controls": [
+			{
+				"title_text_data@hud_kpadv.title_text_data": {
+					"controls": [
+						{
+							"biome_label@hud_kpadv.biome_label": {
+								"anchor_from": "bottom_middle",
+								"anchor_to": "bottom_middle",
+								"offset": [-220, -5]
+							}
+						},
+						{
+							"offhand_slot@hud_layout_kpadv.offhand_slot": {
+								"anchor_from": "bottom_middle",
+								"anchor_to": "bottom_middle",
+								"offset": [-110, 0]
+							}
+						},
+						{
+							"armor_durability_viewer_panel@hud_layout_kpadv.armor_durability_viewer_panel": {
+								"anchor_from": "bottom_middle",
+								"anchor_to": "bottom_middle",
+								"offset": [140, 0]
+							}
+						},
+						{
+							"title_debug_panel@hud_kpadv.title_debug_panel": {
+								"anchor_from": "bottom_middle",
+								"anchor_to": "bottom_middle",
+								"offset": [-235, -50]
+							}
+						}
+					]
+				}
+			}
+		],
+
+		"bindings": [
+			{
+				"binding_name": "(not #is_spectator_mode)",
+				"binding_name_override": "#visible"
+			}
+		]
+	}
+}

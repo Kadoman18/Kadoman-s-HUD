@@ -1,0 +1,72 @@
+{
+	"namespace": "item_id_kpadv",
+
+	"item_id": {
+		"property_bag": {
+			"#qOOO": "textures/ui/armor_durability_viewer/empty_armor_slot_helmet",
+			"#qOOI": "textures/ui/armor_durability_viewer/empty_armor_slot_chestplate",
+			"#qOOZ": "textures/ui/armor_durability_viewer/empty_armor_slot_leggings",
+			"#qOOE": "textures/ui/armor_durability_viewer/empty_armor_slot_boots",
+			"#qOOA": "textures/ui/armor_durability_viewer/empty_armor_slot_shield",
+
+			"#qIOO": "textures/items/leather_helmet",
+			"#qIOI": "textures/items/leather_chestplate",
+			"#qIOZ": "textures/items/leather_leggings",
+			"#qIOE": "textures/items/leather_boots",
+			"#qIOA": "textures/items/leather_boots",
+
+			"#IOIO": "textures/ui/armor_durability_viewer/items/leather_helmet",
+			"#IOII": "textures/ui/armor_durability_viewer/items/leather_chestplate",
+			"#IOIZ": "textures/ui/armor_durability_viewer/items/leather_leggings",
+			"#IOIE": "textures/ui/armor_durability_viewer/items/leather_boots",
+
+			"#IOZO": "textures/items/chainmail_helmet",
+			"#IOZI": "textures/items/chainmail_chestplate",
+			"#IOZZ": "textures/items/chainmail_leggings",
+			"#IOZE": "textures/items/chainmail_boots",
+
+			"#IOEO": "textures/items/iron_helmet",
+			"#IOEI": "textures/items/iron_chestplate",
+			"#IOEZ": "textures/items/iron_leggings",
+			"#IOEE": "textures/items/iron_boots",
+
+			"#IOAO": "textures/items/gold_helmet",
+			"#IOAI": "textures/items/gold_chestplate",
+			"#IOAZ": "textures/items/gold_leggings",
+			"#IOAE": "textures/items/gold_boots",
+
+			"#IOSO": "textures/items/diamond_helmet",
+			"#IOSI": "textures/items/diamond_chestplate",
+			"#IOSZ": "textures/items/diamond_leggings",
+			"#IOSE": "textures/items/diamond_boots",
+
+			"#IObO": "textures/items/netherite_helmet",
+			"#IObI": "textures/items/netherite_chestplate",
+			"#IObZ": "textures/items/netherite_leggings",
+			"#IObE": "textures/items/netherite_boots",
+
+			"#IOTO": "textures/items/copper_helmet",
+			"#IOTI": "textures/items/copper_chestplate",
+			"#IOTZ": "textures/items/copper_leggings",
+			"#IOTE": "textures/items/copper_boots",
+
+			"#SOAO": "textures/items/elytra",
+			"#SOAI": "textures/items/turtle_helmet",
+			"#SOAZ": "textures/ui/armor_durability_viewer/items/carved_pumpkin",
+			"#SOAE": "textures/items/totem",
+			"#SOAA": "textures/ui/armor_durability_viewer/items/shield",
+			"#SOAS": "textures/items/arrow",
+			"#SOAb": "textures/items/map_filled",
+			"#SOAT": "textures/items/nautilus",
+			"#SOAB": "textures/items/fireworks",
+
+			"#SOSO": "textures/ui/armor_durability_viewer/items/creeper_head",
+			"#SOSI": "textures/ui/armor_durability_viewer/items/dragon_head",
+			"#SOSZ": "textures/ui/armor_durability_viewer/items/player_head",
+			"#SOSE": "textures/ui/armor_durability_viewer/items/piglin_head",
+			"#SOSA": "textures/ui/armor_durability_viewer/items/zombie_head",
+			"#SOSS": "textures/ui/armor_durability_viewer/items/skeleton_skull",
+			"#SOSb": "textures/ui/armor_durability_viewer/items/wither_skeleton_skull"
+		}
+	}
+}
