@@ -182,15 +182,15 @@ function buildPlayerHUDString(player, biomeCode) {
 
 		/* ---------- ITEM CODE ---------- */
 		const itemCode = item ? (itemIdList[item.typeId] ?? 0) : 0;
-		subtitle += pad4(itemCode);
+		subtitle += pad4(itemCode) + "|";
 
 		/* ---------- DURABILITY ---------- */
 		if (item && item.hasComponent("minecraft:durability")) {
 			const d = item.getComponent("minecraft:durability");
 			const percent = Math.floor(((d.maxDurability - d.damage) / d.maxDurability) * 1000);
-			subtitle += pad4(percent);
+			subtitle += pad4(percent) + "|";
 		} else {
-			subtitle += "9404";
+			subtitle += "9404|";
 		}
 
 		/* ---------- OFFHAND STACK (ONLY ONCE) ---------- */
