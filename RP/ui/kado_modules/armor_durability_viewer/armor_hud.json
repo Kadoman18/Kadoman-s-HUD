@@ -78,7 +78,8 @@
 	"biome_label@biome_id_kpadv.biome_id": {
 		"type": "label",
 		"text": "#text",
-		"font_size": "medium",
+		"font_size": "small",
+		"font_scale_factor": 1.5,
 		"layer": 15,
 		"shadow": true,
 		"bindings": [
@@ -92,8 +93,7 @@
 				"binding_type": "view",
 				"source_property_name": "('#' + (#biome_text - '§z'))",
 				"target_property_name": "#text"
-			},
-			{ "binding_name": "#show_survival_ui", "binding_name_override": "#visible" }
+			}
 		]
 	},
 
@@ -188,7 +188,13 @@
 		"bindings": [
 			{
 				"binding_type": "view",
-				"source_property_name": "(($renderer_data = '0000') or ($renderer_data = '#none'))",
+				"source_control_name": "kpadv_title_data_binding",
+				"source_property_name": "('§z' + $renderer_data)",
+				"target_property_name": "#item_renderer_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "((#item_renderer_text = '0000') or (#item_renderere_text = '#none'))",
 				"target_property_name": "#visible"
 			}
 		]
@@ -208,12 +214,12 @@
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(#item_renderer_text)",
+				"source_property_name": "('#' + (#item_renderer_text - '§z'))",
 				"target_property_name": "#renderer_data"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(not (#item_renderer_text = '0000'))",
+				"source_property_name": "((#item_renderer_text - '0000') = #item_renderer_text)",
 				"target_property_name": "#visible"
 			}
 		]
@@ -244,13 +250,6 @@
 				}
 			}
 		]
-	},
-
-	"debug_biome_name@biome_id_kpadv.biome_id": {
-		"type": "label",
-		"font_size": "small",
-		"shadow": true,
-		"text": "#text"
 	},
 
 	"debug_value_label": {

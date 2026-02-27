@@ -5,8 +5,8 @@
 		"type": "panel",
 		"$renderer_data|default": "#none",
 		"$durability_data|default": "#none",
-		"$slot_texture|default": "textures/ui/hotbar_0",
-		"$empty_slot_icon_texture|default": "textures/ui/armor_durability_viewer/empty_armor_slot_helmet",
+		"$slot_texture|default": "textures/blocks/glass_red",
+		"$empty_slot_icon_texture|default": "textures/ui/armor_durability_viewer/empty_armor_slot_shield",
 		"$show_stack|default": false,
 		"controls": [
 			{
