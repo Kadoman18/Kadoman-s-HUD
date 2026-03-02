@@ -120,7 +120,7 @@
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "(#stack_count_text - '0')",
+				"source_property_name": "('§z' + #stack_count_text - '0')",
 				"target_property_name": "#text"
 			},
 			{
@@ -153,8 +153,8 @@
 			{
 				"binding_type": "view",
 				"source_control_name": "kpadv_title_data_binding",
-				"source_property_name": "($durability_data)",
-				"target_property_name": "#item_renderer_text"
+				"source_property_name": "('§z' + $durability_data)",
+				"target_property_name": "#item_code"
 			},
 			{
 				"binding_type": "view",
@@ -163,12 +163,12 @@
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "($durability_data * 1)",
+				"source_property_name": "(#item_code - '§z')",
 				"target_property_name": "#progress_bar_current_amount"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "((#item_renderer_text - '9404' - '1000') = #item_renderer_text)",
+				"source_property_name": "((#item_code - '9404' - '1000') = #item_code)",
 				"target_property_name": "#touch_progress_bar_visible"
 			},
 			{ "binding_name": "#show_survival_ui", "binding_name_override": "#visible" }
@@ -190,11 +190,11 @@
 				"binding_type": "view",
 				"source_control_name": "kpadv_title_data_binding",
 				"source_property_name": "('§z' + $renderer_data)",
-				"target_property_name": "#item_renderer_text"
+				"target_property_name": "#item_code"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "((#item_renderer_text = '0000') or (#item_renderere_text = '#none'))",
+				"source_property_name": "(#item_code = '§z0000')",
 				"target_property_name": "#visible"
 			}
 		]
@@ -209,17 +209,17 @@
 			{
 				"binding_type": "view",
 				"source_control_name": "kpadv_title_data_binding",
-				"source_property_name": "('#' + $renderer_data)",
-				"target_property_name": "#item_renderer_text"
+				"source_property_name": "$renderer_data",
+				"target_property_name": "#item_code"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "('#' + (#item_renderer_text - '§z'))",
+				"source_property_name": "('#' + (#item_code - '§z'))",
 				"target_property_name": "#renderer_data"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "((#item_renderer_text - '0000') = #item_renderer_text)",
+				"source_property_name": "((#item_code - '0000') = #item_code)",
 				"target_property_name": "#visible"
 			}
 		]
