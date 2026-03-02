@@ -54,7 +54,21 @@
 					"$renderer_data": "#head_item",
 					"$durability_data": "#head_durability",
 					"$slot_texture": "textures/ui/hotbar_0",
-					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_helmet"
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_helmet",
+					"bindings": [
+						{
+							"binding_type": "view",
+							"source_control_name": "kpadv_title_data_binding",
+							"source_property_name": "#head_item",
+							"target_property_name": "$renderer_data"
+						},
+						{
+							"binding_type": "view",
+							"source_control_name": "kpadv_title_data_binding",
+							"source_property_name": "#head_durability",
+							"target_property_name": "$durability_data"
+						}
+					]
 				}
 			},
 			{
@@ -63,7 +77,21 @@
 					"$renderer_data": "#chest_item",
 					"$durability_data": "#chest_durability",
 					"$slot_texture": "textures/ui/hotbar_3",
-					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_chestplate"
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_chestplate",
+					"bindings": [
+						{
+							"binding_type": "view",
+							"source_control_name": "kpadv_title_data_binding",
+							"source_property_name": "#chest_item",
+							"target_property_name": "$renderer_data"
+						},
+						{
+							"binding_type": "view",
+							"source_control_name": "kpadv_title_data_binding",
+							"source_property_name": "#chest_durability",
+							"target_property_name": "$durability_data"
+						}
+					]
 				}
 			},
 			{
@@ -72,7 +100,21 @@
 					"$renderer_data": "#legs_item",
 					"$durability_data": "#legs_durability",
 					"$slot_texture": "textures/ui/hotbar_6",
-					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_leggings"
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_leggings",
+					"bindings": [
+						{
+							"binding_type": "view",
+							"source_control_name": "kpadv_title_data_binding",
+							"source_property_name": "#legs_item",
+							"target_property_name": "$renderer_data"
+						},
+						{
+							"binding_type": "view",
+							"source_control_name": "kpadv_title_data_binding",
+							"source_property_name": "#legs_durability",
+							"target_property_name": "$durability_data"
+						}
+					]
 				}
 			},
 			{
@@ -81,7 +123,21 @@
 					"$renderer_data": "#feet_item",
 					"$durability_data": "#feet_durability",
 					"$slot_texture": "textures/ui/hotbar_8",
-					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_boots"
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_boots",
+					"bindings": [
+						{
+							"binding_type": "view",
+							"source_control_name": "kpadv_title_data_binding",
+							"source_property_name": "#feet_item",
+							"target_property_name": "$renderer_data"
+						},
+						{
+							"binding_type": "view",
+							"source_control_name": "kpadv_title_data_binding",
+							"source_property_name": "#feet_durability",
+							"target_property_name": "$durability_data"
+						}
+					]
 				}
 			},
 			{
@@ -105,7 +161,21 @@
 					"$durability_data": "#offhand_durability",
 					"$slot_texture": "textures/ui/armor_durability_viewer/offhand_slot",
 					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_shield",
-					"$show_stack": true
+					"$show_stack": true,
+					"bindings": [
+						{
+							"binding_type": "view",
+							"source_control_name": "kpadv_title_data_binding",
+							"source_property_name": "#offhand_item",
+							"target_property_name": "$renderer_data"
+						},
+						{
+							"binding_type": "view",
+							"source_control_name": "kpadv_title_data_binding",
+							"source_property_name": "#offhand_durability",
+							"target_property_name": "$durability_data"
+						}
+					]
 				}
 			}
 		]
@@ -158,6 +228,12 @@
 			{
 				"binding_name": "(not #is_spectator_mode)",
 				"binding_name_override": "#visible"
+			},
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_title_data_binding",
+				"source_property_name": "#encoded_data_string",
+				"target_property_name": "#encoded_data_string"
 			}
 		]
 	}

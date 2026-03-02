@@ -202,14 +202,13 @@
 
 	"item_renderer@item_id_kpadv.item_id": {
 		"type": "image",
-		"texture": "#texture",
+		"texture": "#renderer_data",
 		"size": [16, 16],
 		"layer": 2,
 		"bindings": [
 			{
 				"binding_type": "view",
-				"source_control_name": "kpadv_title_data_binding",
-				"source_property_name": "$renderer_data",
+				"source_property_name": "('§z' + $renderer_data)",
 				"target_property_name": "#item_code"
 			},
 			{
@@ -219,7 +218,7 @@
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "((#item_code - '0000') = #item_code)",
+				"source_property_name": "((#renderer_data - '0000') = #renderer_data)",
 				"target_property_name": "#visible"
 			}
 		]
