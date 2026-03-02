@@ -54,21 +54,7 @@
 					"$renderer_data": "#head_item",
 					"$durability_data": "#head_durability",
 					"$slot_texture": "textures/ui/hotbar_0",
-					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_helmet",
-					"bindings": [
-						{
-							"binding_type": "view",
-							"source_control_name": "kpadv_title_data_binding",
-							"source_property_name": "#head_item",
-							"target_property_name": "$renderer_data"
-						},
-						{
-							"binding_type": "view",
-							"source_control_name": "kpadv_title_data_binding",
-							"source_property_name": "#head_durability",
-							"target_property_name": "$durability_data"
-						}
-					]
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_helmet"
 				}
 			},
 			{
@@ -77,21 +63,7 @@
 					"$renderer_data": "#chest_item",
 					"$durability_data": "#chest_durability",
 					"$slot_texture": "textures/ui/hotbar_3",
-					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_chestplate",
-					"bindings": [
-						{
-							"binding_type": "view",
-							"source_control_name": "kpadv_title_data_binding",
-							"source_property_name": "#chest_item",
-							"target_property_name": "$renderer_data"
-						},
-						{
-							"binding_type": "view",
-							"source_control_name": "kpadv_title_data_binding",
-							"source_property_name": "#chest_durability",
-							"target_property_name": "$durability_data"
-						}
-					]
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_chestplate"
 				}
 			},
 			{
@@ -100,21 +72,7 @@
 					"$renderer_data": "#legs_item",
 					"$durability_data": "#legs_durability",
 					"$slot_texture": "textures/ui/hotbar_6",
-					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_leggings",
-					"bindings": [
-						{
-							"binding_type": "view",
-							"source_control_name": "kpadv_title_data_binding",
-							"source_property_name": "#legs_item",
-							"target_property_name": "$renderer_data"
-						},
-						{
-							"binding_type": "view",
-							"source_control_name": "kpadv_title_data_binding",
-							"source_property_name": "#legs_durability",
-							"target_property_name": "$durability_data"
-						}
-					]
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_leggings"
 				}
 			},
 			{
@@ -123,21 +81,7 @@
 					"$renderer_data": "#feet_item",
 					"$durability_data": "#feet_durability",
 					"$slot_texture": "textures/ui/hotbar_8",
-					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_boots",
-					"bindings": [
-						{
-							"binding_type": "view",
-							"source_control_name": "kpadv_title_data_binding",
-							"source_property_name": "#feet_item",
-							"target_property_name": "$renderer_data"
-						},
-						{
-							"binding_type": "view",
-							"source_control_name": "kpadv_title_data_binding",
-							"source_property_name": "#feet_durability",
-							"target_property_name": "$durability_data"
-						}
-					]
+					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_boots"
 				}
 			},
 			{
@@ -161,21 +105,7 @@
 					"$durability_data": "#offhand_durability",
 					"$slot_texture": "textures/ui/armor_durability_viewer/offhand_slot",
 					"$empty_slot_icon_texture": "textures/ui/armor_durability_viewer/empty_armor_slot_shield",
-					"$show_stack": true,
-					"bindings": [
-						{
-							"binding_type": "view",
-							"source_control_name": "kpadv_title_data_binding",
-							"source_property_name": "#offhand_item",
-							"target_property_name": "$renderer_data"
-						},
-						{
-							"binding_type": "view",
-							"source_control_name": "kpadv_title_data_binding",
-							"source_property_name": "#offhand_durability",
-							"target_property_name": "$durability_data"
-						}
-					]
+					"$show_stack": true
 				}
 			}
 		]
@@ -189,7 +119,7 @@
 		"offset": [0, -1.5],
 		"controls": [
 			{
-				"title_text_data@hud_kpadv.title_text_data": {
+				"kpadv_title_data_binding@hud_kpadv.title_text_data": {
 					"controls": [
 						{
 							"biome_label@hud_kpadv.biome_label": {

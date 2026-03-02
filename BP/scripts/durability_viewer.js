@@ -170,44 +170,42 @@ function pad4(n) {
 /* HUD ENCODER (LEADING PIPE VERSION)                        */
 /* --------------------------------------------------------- */
 function buildPlayerHUDString(player, biomeCode) {
-        const equipment = player.getComponent("equippable");
+	const equipment = player.getComponent("equippable");
 
-        /* Start with leading pipe */
-        let title = "|" + pad4(biomeCode);
-        let offhandStack = 0;
+	/* Start with leading pipe */
+	let title = "|" + pad4(biomeCode);
+	let offhandStack = 0;
 
-        for (const slot of armorSlots) {
-                const item = equipment.getEquipment(slot);
+	for (const slot of armorSlots) {
+		const item = equipment.getEquipment(slot);
 
-                /* ---------- ITEM CODE ---------- */
-                const itemCode = item ? (itemIdList[item.typeId] ?? 0) : 0;
-                title += "|" + pad4(itemCode);
+		/* ---------- ITEM CODE ---------- */
+		const itemCode = item ? (itemIdList[item.typeId] ?? 0) : 0;
+		title += "|" + pad4(itemCode);
 
-                /* ---------- DURABILITY ---------- */
-                if (item && item.hasComponent("minecraft:durability")) {
-                        const durability = item.getComponent("minecraft:durability");
+		/* ---------- DURABILITY ---------- */
+		if (item && item.hasComponent("minecraft:durability")) {
+			const durability = item.getComponent("minecraft:durability");
 
-                        const percent = Math.floor(
-                                ((durability.maxDurability - durability.damage) /
-                                        durability.maxDurability) *
-                                        1000
-                        );
+			const percent = Math.floor(
+				((durability.maxDurability - durability.damage) / durability.maxDurability) * 1000,
+			);
 
-                        title += "|" + pad4(percent);
-                } else {
-                        title += "|9404";
-                }
+			title += "|" + pad4(percent);
+		} else {
+			title += "|9404";
+		}
 
-                /* ---------- OFFHAND STACK (ONLY ONCE) ---------- */
-                if (slot === EquipmentSlot.Offhand) {
-                        offhandStack = item ? item.amount : 0;
-                }
-        }
+		/* ---------- OFFHAND STACK (ONLY ONCE) ---------- */
+		if (slot === EquipmentSlot.Offhand) {
+			offhandStack = item ? item.amount : 0;
+		}
+	}
 
-        /* append stack count AFTER loop */
-        title += "|" + pad4(offhandStack);
+	/* append stack count AFTER loop */
+	title += "|" + pad4(offhandStack);
 
-        return title;
+	return title;
 }
 
 /* --------------------------------------------------------- */
@@ -250,4 +248,13 @@ world.afterEvents.playerSpawn.subscribe(({ player }) => {
 	const title = buildPlayerHUDString(player, biomeCode);
 	playerCache.set(player.id, title);
 	updatePlayerDisplay(player, title);
+});
+
+world.afterEvents.playerDimensionChange.subscribe(({ player }) => {
+	system.runTimeout(() => {
+		const biomeCode = getPlayerBiomeCode(player);
+		const title = buildPlayerHUDString(player, biomeCode);
+		playerCache.set(player.id, title);
+		updatePlayerDisplay(player, title);
+	}, 20);
 });

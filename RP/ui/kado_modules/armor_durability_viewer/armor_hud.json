@@ -202,7 +202,7 @@
 
 	"item_renderer@item_id_kpadv.item_id": {
 		"type": "image",
-		"texture": "#renderer_data",
+		"texture": "#texture",
 		"size": [16, 16],
 		"layer": 2,
 		"bindings": [
@@ -214,11 +214,11 @@
 			{
 				"binding_type": "view",
 				"source_property_name": "('#' + (#item_code - '§z'))",
-				"target_property_name": "#renderer_data"
+				"target_property_name": "#texture"
 			},
 			{
 				"binding_type": "view",
-				"source_property_name": "((#renderer_data - '0000') = #renderer_data)",
+				"source_property_name": "((#texture - '#0000') = #texture)",
 				"target_property_name": "#visible"
 			}
 		]
@@ -232,19 +232,13 @@
 		"$additional_content|default": "hud_kpadv.durability_bar_panel",
 		"controls": [
 			{
-				"item_renderer@hud_kpadv.item_renderer": {
-					"$renderer_data": "$renderer_data"
-				}
+				"item_renderer@hud_kpadv.item_renderer": {}
 			},
 			{
-				"empty_slot_icon@hud_kpadv.empty_slot_icon": {
-					"$renderer_data": "$renderer_data"
-				}
+				"empty_slot_icon@hud_kpadv.empty_slot_icon": {}
 			},
 			{
 				"additional_content@$additional_content": {
-					"$renderer_data": "$renderer_data",
-					"$durability_data": "$durability_data",
 					"size": ["100%sm", "100%sm"]
 				}
 			}
