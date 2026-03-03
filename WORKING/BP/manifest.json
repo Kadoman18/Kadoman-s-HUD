@@ -1,0 +1,33 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "Kadoman's HUD (BP)",
+		"description": "Latest Iteration of the Kadopack after Optimizing for Bedrock Lag.",
+		"uuid": "ed8d206f-1761-4532-a112-eb55af6978cf",
+		"min_engine_version": [1, 21, 100],
+		"version": [1, 0, 0]
+	},
+	"modules": [
+		{
+			"type": "data",
+			"description": "First Iteration",
+			"uuid": "cf433916-ee9d-4009-abc7-c8e0e168b454",
+			"version": [1, 0, 0]
+		},
+		{
+			"type": "script",
+			"language": "javascript",
+			"entry": "main.js",
+			"uuid": "018330df-26e5-4c17-9dcd-b34caf25bb8f",
+			"version": [1, 0, 0]
+		}
+	],
+	"dependencies": [
+		{
+			"uuid": "a93909b4-eab0-4947-b7d3-a300a23537ea",
+			"version": [1, 0, 0]
+		},
+		{ "module_name": "@minecraft/server", "version": "2.3.0" }
+	],
+	"metadata": { "authors": ["kadoman"] }
+}

@@ -1,0 +1,282 @@
+{
+	"compass_panel": {
+		"type": "panel",
+		"size": [22.5, 20],
+		"anchor_to": "center",
+		"anchor_from": "center",
+		"controls": [
+			{
+				"compass_overlay": {
+					"type": "custom",
+					"renderer": "inventory_item_renderer",
+					"size": [18.5, 18.5],
+					"offset": [0, -1.5],
+					"anchor_to": "center",
+					"anchor_from": "center",
+					"property_bag": { "#item_id_aux": 22609920 }
+				}
+			}
+		]
+	},
+
+	"clock_panel": {
+		"type": "panel",
+		"size": [22.5, 20],
+		"anchor_to": "center",
+		"anchor_from": "center",
+		"controls": [
+			{
+				"clock_overlay": {
+					"type": "custom",
+					"renderer": "inventory_item_renderer",
+					"size": [18.5, 18.5],
+					"offset": [0, -1.5],
+					"anchor_to": "center",
+					"anchor_from": "center",
+					"property_bag": { "#item_id_aux": 22740992 }
+				}
+			}
+		]
+	},
+
+	"kado_hud_base": {
+		"type": "stack_panel",
+		"orientation": "horizontal",
+		"size": [180, 20],
+		"anchor_to": "top_middle",
+		"anchor_from": "top_middle",
+		"controls": [
+			{ "compass_panel@hud.compass_panel": {} },
+			{ "clock_panel@hud.clock_panel": {} }
+		]
+	},
+
+	"kado_hud": {
+		"type": "panel",
+		"offset": "$offset",
+		"controls": [{ "kado_hud_base@hud.kado_hud_base": {} }],
+		"variables": [
+			{
+				"requires": "($mouse or $game_pad)",
+				"$offset": [0, 4]
+			},
+			{
+				"requires": "$touch",
+				"$offset": [0, 20]
+			}
+		],
+		"bindings": [
+			{
+				"binding_name": "(not #bar_visible)",
+				"binding_type": "collection",
+				"binding_collection_name": "boss_bars",
+				"binding_name_override": "#visible"
+			}
+		]
+	},
+
+	"hotbar_numbers": {
+		"type": "stack_panel",
+		"layer": 100,
+		"orientation": "horizontal",
+		"anchor_to": "bottom_middle",
+		"anchor_from": "bottom_middle",
+		"size": [208, 10],
+		"offset": [16, -13.5],
+		"controls": [
+			{
+				"hotbar_1": {
+					"type": "label",
+					"text": "1",
+					"alpha": 0.55,
+					"font_type": "MinecraftTen",
+					"size": [20, 10],
+					"font_scale_factor": 0.75,
+					"anchor_to": "top_left",
+					"anchor_from": "top_left"
+				}
+			},
+			{
+				"hotbar_2": {
+					"type": "label",
+					"text": "2",
+					"alpha": 0.55,
+					"font_type": "MinecraftTen",
+					"size": [20, 10],
+					"font_scale_factor": 0.75,
+					"anchor_to": "top_left",
+					"anchor_from": "top_left"
+				}
+			},
+			{
+				"hotbar_3": {
+					"type": "label",
+					"text": "3",
+					"alpha": 0.55,
+					"font_type": "MinecraftTen",
+					"size": [20, 10],
+					"font_scale_factor": 0.75,
+					"anchor_to": "top_left",
+					"anchor_from": "top_left"
+				}
+			},
+			{
+				"hotbar_4": {
+					"type": "label",
+					"text": "4",
+					"alpha": 0.55,
+					"font_type": "MinecraftTen",
+					"size": [20, 10],
+					"font_scale_factor": 0.75,
+					"anchor_to": "top_left",
+					"anchor_from": "top_left"
+				}
+			},
+			{
+				"hotbar_5": {
+					"type": "label",
+					"text": "5",
+					"alpha": 0.55,
+					"font_type": "MinecraftTen",
+					"size": [20, 10],
+					"font_scale_factor": 0.75,
+					"anchor_to": "top_left",
+					"anchor_from": "top_left"
+				}
+			},
+			{
+				"hotbar_6": {
+					"type": "label",
+					"text": "6",
+					"alpha": 0.55,
+					"font_type": "MinecraftTen",
+					"size": [20, 10],
+					"font_scale_factor": 0.75,
+					"anchor_to": "top_left",
+					"anchor_from": "top_left"
+				}
+			},
+			{
+				"hotbar_7": {
+					"type": "label",
+					"text": "7",
+					"alpha": 0.55,
+					"font_type": "MinecraftTen",
+					"size": [20, 10],
+					"font_scale_factor": 0.75,
+					"anchor_to": "top_left",
+					"anchor_from": "top_left"
+				}
+			},
+			{
+				"hotbar_8": {
+					"type": "label",
+					"text": "8",
+					"alpha": 0.55,
+					"font_type": "MinecraftTen",
+					"size": [20, 10],
+					"font_scale_factor": 0.75,
+					"anchor_to": "top_left",
+					"anchor_from": "top_left"
+				}
+			},
+			{
+				"hotbar_9": {
+					"type": "label",
+					"text": "9",
+					"alpha": 0.55,
+					"font_type": "MinecraftTen",
+					"size": [20, 10],
+					"font_scale_factor": 0.75,
+					"anchor_to": "top_left",
+					"anchor_from": "top_left"
+				}
+			}
+		],
+		"bindings": [
+			{
+				"binding_name": "(not #is_spectator_mode)",
+				"binding_name_override": "#visible"
+			}
+		]
+	},
+
+	"hud_title_text/title_frame": {
+		"bindings": [
+			{ "binding_name": "#hud_title_text_string" },
+			{
+				"binding_type": "view",
+				"source_property_name": "((#hud_title_text_string - 'kado:') = #hud_title_text_string)",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"hud_title_text/subtitle_frame": {
+		"bindings": [
+			{ "binding_name": "#hud_subtitle_text_string" },
+			{
+				"binding_type": "view",
+				"source_property_name": "((#hud_subtitle_text_string - 'kado:') = #hud_subtitle_text_string)",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"boss_health_panel": {
+		"type": "panel",
+		"size": [182, 20],
+		"anchor_from": "top_middle",
+		"anchor_to": "top_middle",
+		"$progress_bar_collection": "boss_bars",
+		"controls": [
+			{
+				"boss_name@boss_name_panel": {}
+			},
+			{
+				"progress_bar_for_collections@common.progress_bar_for_collections": {
+					"offset": [0, 10]
+				}
+			},
+			{
+				"kado_hud_base@hud.kado_hud_base": {
+					"offset": [0, 17.5]
+				}
+			}
+		],
+		"bindings": [
+			{
+				"binding_name": "#bar_visible",
+				"binding_type": "collection",
+				"binding_collection_name": "boss_bars",
+				"binding_name_override": "#visible"
+			}
+		]
+	},
+
+	"root_panel": {
+		"modifications": [
+			{
+				"array_name": "controls",
+				"operation": "insert_front",
+				"value": [
+					{
+						"kado_hud@hud.kado_hud": {}
+					},
+					{
+						"hotbar_numbers@hud.hotbar_numbers": {}
+					},
+					{
+						"kpadv_content@hud_layout_kpadv.kpadv_content": {}
+					},
+					{
+						"kpadv_title_data_binding@hud_kpadv.title_text_data": {}
+					},
+					{
+						"kpadv_subtitle_data_binding@hud_kpadv.subtitle_text_data": {}
+					}
+				]
+			}
+		]
+	}
+}

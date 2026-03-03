@@ -1,0 +1,354 @@
+{
+	"namespace": "hud_kpadv",
+
+	"offhand_stack_count_label": {
+		"type": "label",
+		"text": "#text",
+		"anchor_to": "bottom_right",
+		"anchor_from": "bottom_right",
+		"offset": [0, 1],
+		"layer": 10,
+		"shadow": true,
+		"bindings": [
+			{
+				"binding_name": "#show_survival_ui"
+			},
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_property_name": "('_' + #offhand_stack_count)",
+				"target_property_name": "#stack_count_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "((#stack_count_text - '_') * 1)",
+				"target_property_name": "#stack_count_number"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('§z' + #stack_count_text - '_')",
+				"target_property_name": "#text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(((#stack_count_text - '9404') = #stack_count_text) and (#stack_count_number > 1) and #show_survival_ui)",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"offhand_stack_count_panel": {
+		"type": "panel",
+		"size": [18, 18],
+		"controls": [
+			{
+				"stack_count@hud_kpadv.offhand_stack_count_label": {}
+			}
+		]
+	},
+
+	"durability_bar": {
+		"type": "custom",
+		"renderer": "progress_bar_renderer",
+		"size": [12, 1],
+		"offset": [0, 5],
+		"layer": 10,
+		"property_bag": {
+			"drop_shadow": true,
+			"is_durability": true,
+			"round_value": true,
+			"#default_progress_bar_total_amount": 1000
+		},
+		"bindings": [
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_property_name": "('§z' + $renderer_data - '_')",
+				"target_property_name": "#item_renderer_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "#default_progress_bar_total_amount",
+				"target_property_name": "#progress_bar_total_amount"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "((#item_renderer_text - '§z') * 1)",
+				"target_property_name": "#progress_bar_current_amount"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "((#item_renderer_text - '9404' - '1000') = #item_renderer_text)",
+				"target_property_name": "#touch_progress_bar_visible"
+			},
+			{
+				"binding_name": "#show_survival_ui",
+				"binding_name_override": "#visible"
+			}
+		]
+	},
+
+	"durability_bar_panel": {
+		"type": "panel",
+		"controls": [
+			{
+				"durability_bar@hud_kpadv.durability_bar": {}
+			}
+		]
+	},
+
+	"durability_text": {
+		"type": "label",
+		"text": "#text",
+		"size": ["default", "default"],
+		"layer": 10,
+		"color": "green",
+		"shadow": true,
+		"localize": false,
+		"bindings": [
+			{
+				"binding_name": "#show_survival_ui"
+			},
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_subtitle_data_binding",
+				"source_property_name": "('_' + $renderer_data)",
+				"target_property_name": "#item_renderer_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(#item_renderer_text - ('%.4s' * #item_renderer_text))",
+				"target_property_name": "#raw_decimal_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(('%.' + ((#raw_decimal_text > 0) * 3) + 's') * ('_.' + #raw_decimal_text))",
+				"target_property_name": "#decimal_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('§z' + ('%.4s' * #item_renderer_text) + #decimal_text - '_' + '%')",
+				"target_property_name": "#text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(((#item_renderer_text - '9404') = #item_renderer_text) and #show_survival_ui)",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"durability_text_panel": {
+		"type": "panel",
+		"controls": [
+			{
+				"durability_text@hud_kpadv.durability_text": {
+					"anchor_from": "center",
+					"anchor_to": "center",
+					"offset": [0, 0]
+				}
+			}
+		]
+	},
+
+	"empty_slot_icon": {
+		"type": "image",
+		"texture": "$empty_slot_icon_texture",
+		"size": [16, 16],
+		"layer": 1,
+		"bindings": [
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_title_data_binding",
+				"source_property_name": "('§z' + $renderer_data)",
+				"target_property_name": "#item_renderer_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(not ((#item_renderer_text - '9404') = #item_renderer_text))",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"item_renderer@item_id_kpadv.item_id": {
+		"type": "image",
+		"texture": "#texture",
+		"size": [16, 16],
+		"layer": 2,
+		"bindings": [
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_title_data_binding",
+				"source_property_name": "('§z' + $renderer_data)",
+				"target_property_name": "#item_renderer_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('#' + (#item_renderer_text - '§z'))",
+				"target_property_name": "#texture"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "((#item_renderer_text - '9404') = #item_renderer_text)",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"item_renderer_panel": {
+		"type": "panel",
+		"size": ["100%cm", "100%cm"],
+
+		"$renderer_data|default": "#none",
+		"$additional_content|default": "hud_kpadv.durability_bar_panel",
+		"controls": [
+			{
+				"item_renderer@hud_kpadv.item_renderer": {}
+			},
+			{
+				"empty_slot_icon@hud_kpadv.empty_slot_icon": {}
+			},
+			{
+				"additional_content@$additional_content": {
+					"size": ["100%sm", "100%sm"]
+				}
+			}
+		]
+	},
+
+	"biome_label@biome_id_kpadv.biome_id": {
+		"type": "label",
+		"text": "#text",
+		"font_size": "small",
+		"anchor_from": "bottom_left",
+		"anchor_to": "bottom_left",
+		"offset": [-5, 5],
+		"font_scale_factor": 1.5,
+		"layer": 15,
+		"shadow": true,
+		"bindings": [
+			{
+				"binding_type": "view",
+				"source_control_name": "kpadv_title_data_binding",
+				"source_property_name": "('§z' + #biome_code)",
+				"target_property_name": "#biome_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('#' + (#biome_text - '§z'))",
+				"target_property_name": "#text"
+			}
+		]
+	},
+
+	"subtitle_text_data": {
+		"type": "panel",
+		"size": [0, 0],
+		"bindings": [
+			{
+				"binding_name": "#hud_subtitle_text_string"
+			},
+			{
+				"binding_name": "#hud_subtitle_text_string",
+				"binding_name_override": "#preserved_text",
+				"binding_condition": "visibility_changed"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(not (#hud_subtitle_text_string = #preserved_text) and not ((#hud_subtitle_text_string - 'kado') = #hud_subtitle_text_string))",
+				"target_property_name": "#visible"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(#preserved_text - 'kado')",
+				"target_property_name": "#subtitle_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.5s' * #subtitle_text - ('%.1s' * #subtitle_text))",
+				"target_property_name": "#head_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.9s' * #subtitle_text - ('%.5s' * #subtitle_text))",
+				"target_property_name": "#chest_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.13s' * #subtitle_text - ('%.9s' * #subtitle_text))",
+				"target_property_name": "#legs_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.17s' * #subtitle_text - ('%.13s' * #subtitle_text))",
+				"target_property_name": "#feet_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.21s' * #subtitle_text - ('%.17s' * #subtitle_text))",
+				"target_property_name": "#offhand_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.25s' * #subtitle_text - ('%.21s' * #subtitle_text))",
+				"target_property_name": "#offhand_stack_count"
+			}
+		]
+	},
+
+	"title_text_data": {
+		"type": "panel",
+		"size": [0, 0],
+		"bindings": [
+			{
+				"binding_name": "#hud_title_text_string"
+			},
+			{
+				"binding_name": "#hud_title_text_string",
+				"binding_name_override": "#preserved_text",
+				"binding_condition": "visibility_changed"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(not (#hud_title_text_string = #preserved_text) and not ((#hud_title_text_string - 'kado') = #hud_title_text_string))",
+				"target_property_name": "#visible"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "(#preserved_text - 'kado')",
+				"target_property_name": "#title_text"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.5s' * #title_text - ('%.1s' * #title_text))",
+				"target_property_name": "#head_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.9s' * #title_text - ('%.5s' * #title_text))",
+				"target_property_name": "#chest_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.13s' * #title_text - ('%.9s' * #title_text))",
+				"target_property_name": "#legs_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.17s' * #title_text - ('%.13s' * #title_text))",
+				"target_property_name": "#feet_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.21s' * #title_text - ('%.17s' * #title_text))",
+				"target_property_name": "#offhand_item"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "('%.25s' * #title_text - ('%.21s' * #title_text))",
+				"target_property_name": "#biome_code"
+			}
+		]
+	}
+}
